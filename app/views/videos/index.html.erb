@@ -17,8 +17,11 @@
         <td><%= video.title %></td>
         <td><%= video.description %></td>
         <td><%= link_to 'Show', video %></td>
-        <td><%= link_to 'Edit', edit_video_path(video) %></td>
-        <td><%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if user_signed_in? && current_user == video.user %>
+          <td><%= link_to 'Edit', edit_video_path(video) %></td>
+          <td><%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        
       </tr>
     <% end %>
   </tbody>
@@ -30,3 +33,4 @@
 <% else %>
   <p>The Ability to post videos is just for teachers!</p>
 <% end %>
+<%= link_to 'Home Page', root_path %>

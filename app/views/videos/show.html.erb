@@ -10,7 +10,7 @@
 </p>
 
 <p>
-  <strong>by <%= @video.user.username %></strong>
+  <strong>by <%=link_to @video.user.username, user_path(@video.user) %></strong>
 </p>
 
 <%= link_to 'Edit', edit_video_path(@video) %> |
