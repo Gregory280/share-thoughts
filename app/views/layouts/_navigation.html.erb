@@ -1,29 +1,52 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <%= link_to 'ShareThoughts', root_path, class: 'navbar-brand' %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown link
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-    </ul>
-  </div>
-</nav>
+<div class="navbar-my-background">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary center-width justify-content-between">
+    <%= link_to root_path do %>
+      <%= image_tag("logo.png", width: "160", height:"45") %>
+    <% end %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav mr-auto ml-4">
+        <li class="nav-item">
+          <%= link_to 'Home', root_path, class: 'nav-link font-weight-bold text-white' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Sobre', about_path, class: 'nav-link font-weight-bold text-white' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Professores', '#', class: 'nav-link font-weight-bold text-white' %>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle font-weight-bold text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Tópicos
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">vocabulary</a>
+            <a class="dropdown-item" href="#">writing</a>
+            <a class="dropdown-item" href="#">speaking</a>
+            <a class="dropdown-item" href="#">grammar</a>
+            <a class="dropdown-item" href="#">TOEFL</a>
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'Perfil', current_user, class: 'btn btn-dark' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Sair', destroy_user_session_path, class: 'btn btn-dark', method: :delete %>
+          </li>
+        <% else %>
+          <%= link_to new_user_registration_path, class: 'mr-2' do %>
+            <button class="btn btn-info">Criar Conta</button>
+          <% end %>
+          <%= link_to new_user_session_path do %>
+            <button class="btn btn-info">Entrar</button>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </nav>
+</div>
