@@ -1,4 +1,7 @@
-Users
+Users<br/>
 <% @users.each do |user| %>
-  <p><%= link_to user.username, user_path(user) %></p> 
+  <%= user.name %>
+  <%= link_to user.username, user_path(user) %><br/>
 <% end %>
+
+<%= link_to 'Home Page', root_path %>
