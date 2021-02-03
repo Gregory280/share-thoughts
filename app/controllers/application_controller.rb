@@ -10,4 +10,5 @@ class ApplicationController < ActionController::Base
   def is_teacher?
     current_user && current_user.teacher == true
   end
+  
 end
