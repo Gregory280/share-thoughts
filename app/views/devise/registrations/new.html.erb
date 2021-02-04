@@ -1,38 +1,52 @@
-<h2>Sign up</h2>
-
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, placeholder: 'Must be unique' %>
-  </div>
   
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, placeholder: 'Your Full Name' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="card">
+    <div class="card-header">
+      <h3>Criar conta</h3>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <div class="field form-group">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: 'Seu melhor e-mail' %>
+          </div>
+        </div>
+        <div class="col">
+          <div class="field form-group">
+            <%= f.label :username, 'Usuário' %><br />
+            <%= f.text_field :username, placeholder: 'Deve ser único' %>
+          </div>
+        </div>
+        <div class="col">
+          <div class="field form-group">
+            <%= f.label :name, 'Nome' %><br />
+            <%= f.text_field :name, placeholder: 'Seu nome completo' %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="field form-group">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password" %>
+          </div>
+        </div>
+        <div class="col">
+          <div class="field form-group">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <%= f.submit "Sign up", class: 'btn btn-success' %>
+      </div>
+    </div>
   </div>
 <% end %>
 

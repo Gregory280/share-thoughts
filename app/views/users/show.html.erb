@@ -1,3 +1,6 @@
 <%= @user.username %> <br/>
 <%= @user.email %> <br/>
 <%= @user.name %>
+<% if user_signed_in? && @user.email == current_user.email %>
+  <%= link_to 'Edit Account', edit_user_registration_path %>
+<% end %>

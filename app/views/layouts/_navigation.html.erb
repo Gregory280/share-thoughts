@@ -1,5 +1,5 @@
 <div class="navbar-my-background">
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary center-width justify-content-between">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary center-width">
     <%= link_to root_path do %>
       <%= image_tag("logo.png", width: "160", height:"45") %>
     <% end %>
@@ -32,12 +32,12 @@
       </ul>
       <ul class="navbar-nav">
         <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to 'Perfil', current_user, class: 'btn btn-dark' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'Sair', destroy_user_session_path, class: 'btn btn-dark', method: :delete %>
-          </li>
+          <%= link_to current_user, class: 'mr-2' do %>
+            <button class="btn btn-info">Perfil</button>
+          <% end %>
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <button class="btn btn-info">Sair</button>
+          <% end %>
         <% else %>
           <%= link_to new_user_registration_path, class: 'mr-2' do %>
             <button class="btn btn-info">Criar Conta</button>

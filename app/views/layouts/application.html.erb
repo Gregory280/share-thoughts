@@ -14,7 +14,9 @@
 
   <body>
     <%= render 'layouts/navigation' %>
-    <%= render 'layouts/alerts' %>
-    <%= yield %>
+    <div class="container center-width">
+      <%= render 'layouts/alerts' %>
+      <%= yield %>
+    </div>
   </body>
 </html>
