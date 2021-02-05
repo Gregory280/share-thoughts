@@ -1,20 +1,11 @@
-<div class="jumbotron jumbotron-fluid center-width">
+<div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-4">Fluid jumbotron</h1>
     <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
   </div>
 </div>
-<% if current_user %>
-  <p>Welcome <%= current_user.username %> ! </p><br/>
-  <%= link_to 'My Profile', current_user %>
-  <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to 'Sign Up', new_user_registration_path %>
-  <%= link_to 'Sign In', new_user_session_path %>
-<% end %>
 <%= link_to 'Videos', videos_path %>
 <%= link_to 'ALl Users', users_path%>
-<%= link_to 'Edit Profile', edit_user_registration_path(current_user) %>
 
-<br/>
+
 
