@@ -15,7 +15,9 @@
   <body>
     <%= render 'layouts/navigation' %>
     <div class="container">
-      <%= render 'layouts/alerts' %>
+      <% if notice %>
+        <%= render 'layouts/alerts' %>
+      <% end %>
       <%= yield %>
     </div>
     <%= render 'layouts/footer' %>
