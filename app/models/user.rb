@@ -6,8 +6,6 @@ class User < ApplicationRecord
 
   has_many :videos
 
-  validates :password, presence: { message: 'Senha não pode ser vazio.' }
-
   validates :email, 
     uniqueness: { message: 'Email já cadastrado.' }
 
