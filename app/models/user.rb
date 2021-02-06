@@ -19,4 +19,7 @@ class User < ApplicationRecord
     length: { in: 3..50,
       message: 'Nome com tamanho inválido.' },
     presence: { message: 'Nome não pode ser vazio.' }
+
+  validates :about,
+      length: { maximum: 600 }
 end

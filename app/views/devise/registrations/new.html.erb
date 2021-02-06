@@ -30,17 +30,25 @@
       <div class="row">
         <div class="col">
           <div class="field form-group">
+            <%= f.label :about, 'Sobre você' %><em> (Campo opcional - Máximo 600 caracters)</em>
+            <%= f.text_area :about, placeholder: 'Por que está estudando inglês ?' , class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="field form-group">
             <%= f.label :password %>
             <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <em>(Mínimo <%= @minimum_password_length %> digitos)</em>
             <% end %><br />
-            <%= f.password_field :password, autocomplete: "new-password" %>
+            <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
           </div>
         </div>
         <div class="col">
           <div class="field form-group">
             <%= f.label :password_confirmation %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
           </div>
         </div>
       </div>

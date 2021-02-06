@@ -44,6 +44,15 @@
 
       </div>
 
+      <div class="row">
+        <div class="col">
+          <div class="field form-group">
+            <%= f.label :about, 'Sobre você' %><em> (Campo opcional - Máximo 600 caracters)</em><br/>
+            <%= f.text_area :about, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+
       <br/>
       <div class="field form-group">
         <%= f.label :current_password, 'Senha Atual' %><i> (digite sua senha atual para confirmar mudanças no perfil)</i><br/>
