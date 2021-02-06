@@ -8,6 +8,5 @@ class Video < ApplicationRecord
     length: { in: 3..1000, message: 'Dê um resumo de sua aula.' },
     presence: true
   validates :video_file, presence: true,
-    content_type: [:mp4], size: { less_than: 600.megabytes, 
-      message: 'Seu vídeo ultrapassou o tamanho limite.'}
+    blob: { content_type: ['video/mp4'], size_range: 1..600.megabytes }
 end
