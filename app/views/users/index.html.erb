@@ -9,41 +9,43 @@
           <!-- end row -->
           <div class="row">
             <% @users.each do |user| %>
-              <div class="col-lg-4">
-                  <div class="text-center card-box">
-                      <div class="member-card pt-2 pb-2">
-                          <div class="thumb-lg member-thumb mx-auto"><%= gravatar_for user, size: 90, class: 'rounded-circle img-thumbnail', alt: "profile-image" %></div>
-                          <div class="mt-3">
-                              <h4><%= user.name %></h4>
-                              <p class="text-muted"><%= user.username %></p>
-                          </div>
-                          <%= link_to 'Acessar perfil', user, class: 'btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light' %>
+              <% if user.teacher === true %>
+                <div class="col-lg-4">
+                    <div class="text-center card-box">
+                        <div class="member-card pt-2 pb-2">
+                            <div class="thumb-lg member-thumb mx-auto"><%= gravatar_for user, size: 90, class: 'rounded-circle img-thumbnail', alt: "profile-image" %></div>
+                            <div class="mt-3">
+                                <h4><%= user.name %></h4>
+                                <p class="text-muted"><%= user.username %></p>
+                            </div>
+                            <%= link_to 'Acessar perfil', user, class: 'btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light' %>
 
-                          <div class="mt-4">
-                              <div class="row">
-                                  <div class="col-4">
-                                      <div class="mt-3">
-                                          <h4>2563</h4>
-                                          <p class="mb-0 text-muted">Vídeos</p>
-                                      </div>
-                                  </div>
-                                  <div class="col-4">
-                                      <div class="mt-3">
-                                          <h4>6952</h4>
-                                          <p class="mb-0 text-muted">Posts</p>
-                                      </div>
-                                  </div>
-                                  <div class="col-4">
-                                      <div class="mt-3">
-                                          <h4>1125</h4>
-                                          <p class="mb-0 text-muted">Stars</p>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+                            <div class="mt-4">
+                                <div class="row">
+                                    <div class="col-4">
+                                        <div class="mt-3">
+                                            <h4>2563</h4>
+                                            <p class="mb-0 text-muted">Vídeos</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mt-3">
+                                            <h4>6952</h4>
+                                            <p class="mb-0 text-muted">Posts</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="mt-3">
+                                            <h4>1125</h4>
+                                            <p class="mb-0 text-muted">Stars</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              <% end %>
             <% end %>
           </div>
       </div>
