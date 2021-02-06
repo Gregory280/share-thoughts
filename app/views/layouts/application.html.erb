@@ -13,13 +13,15 @@
   </head>
 
   <body>
-    <%= render 'layouts/navigation' %>
-    <div class="container">
-      <% if notice %>
-        <%= render 'layouts/alerts' %>
-      <% end %>
-      <%= yield %>
-    </div>
-    <%= render 'layouts/footer' %>
+    <wrapper class="d-flex flex-column">
+      <%= render 'layouts/navigation' %>
+      <div class="container flex-fill">
+        <% if notice %>
+          <%= render 'layouts/alerts' %>
+        <% end %>
+        <%= yield %>
+      </div>
+      <%= render 'layouts/footer' %>
+    </wrapper>
   </body>
 </html>
