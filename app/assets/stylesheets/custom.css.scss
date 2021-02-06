@@ -17,11 +17,23 @@ body, wrapper {
 .flex-fill {
   flex:1 1 auto;
 }
-.footer-my-background {
-  background:#007bff;
-  width: 100%;
-  height: max-content;
+.footy {
+  padding-top: 15px!important;
+  padding-bottom: 15px!important;
+}
+.footer {
+  margin-top: 35px!important;
 }
 
 /* profile page */
+.cover {
+  background: #007bff;
+  background-size: cover;
+  background-repeat: no-repeat
+}
 
+/* others */
+.remove-p-m {
+  margin: 0;
+  padding: 0;
+}
