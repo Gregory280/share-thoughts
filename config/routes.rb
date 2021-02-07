@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   resources :comments 
   root to: 'pages#home'
   devise_for :users
-  resources :users, only: [:show, :edit, :index]
+  resources :users, only: [:show, :edit]
   get 'about', to: 'pages#about'
+  get 'teachers', to: 'pages#teachers'
   
 
   # get 'users/:id', to: 'users#show'

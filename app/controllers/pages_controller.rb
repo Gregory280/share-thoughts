@@ -8,4 +8,9 @@ class PagesController < ApplicationController
   def about
 
   end
+
+  def teachers
+    @teachers = User.where(teacher: true)
+  end
+
 end
