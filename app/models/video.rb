@@ -1,6 +1,9 @@
 class Video < ApplicationRecord
   belongs_to :user
   has_one_attached :video_file
+  has_many :comments, as: :commentable
+
+
   validates :title, 
     length: { in: 3..150, message: 'O título deve ser conciso.' },
     presence: true

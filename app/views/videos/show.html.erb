@@ -18,5 +18,9 @@
   <strong>by <%=link_to @video.user.username, user_path(@video.user) %></strong>
 </p>
 
+<%= render 'comments/comments', commentable: @video %>
+<%= render 'comments/form', commentable: @video %>
 <%= link_to 'Edit', edit_video_path(@video) %> |
 <%= link_to 'Back', videos_path %>
+
+

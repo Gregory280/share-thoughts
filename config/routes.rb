@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
-  resources :videos
+  get 'comments/create'
+  resources :videos do
+    resources :comments, module: :videos
+  end
+  resources :comments 
   root to: 'pages#home'
   devise_for :users
-  resources :users
+  resources :users, only: [:show, :edit, :index]
   get 'about', to: 'pages#about'
+  
 
   # get 'users/:id', to: 'users#show'
   # get 'users', to: 'users#index'
