@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_07_193315) do
+ActiveRecord::Schema.define(version: 2021_02_07_222650) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,13 @@ ActiveRecord::Schema.define(version: 2021_02_07_193315) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "title"
+    t.boolean "display_in_navbar", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "comments", force: :cascade do |t|
     t.string "commentable_type"
     t.integer "commentable_id"
@@ -65,6 +72,11 @@ ActiveRecord::Schema.define(version: 2021_02_07_193315) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["username"], name: "index_users_on_username", unique: true
+  end
+
+  create_table "video_categories", force: :cascade do |t|
+    t.integer "video_id"
+    t.integer "category_id"
   end
 
   create_table "videos", force: :cascade do |t|

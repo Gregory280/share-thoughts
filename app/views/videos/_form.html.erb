@@ -25,6 +25,10 @@
     <%= form.file_field :video_file %>
   </div>
 
+  <div>
+    <%= form.label :category %>
+    <%= form.collection_check_boxes(:category_ids, Category.all, :id, :title, { prompt: 'None'}, { multiple: true}) %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>

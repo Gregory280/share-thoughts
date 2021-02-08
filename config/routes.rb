@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categories, except: [:new, :edit, :delete]
   get 'comments/create'
   resources :videos do
     resources :comments, module: :videos

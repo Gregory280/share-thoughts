@@ -3,6 +3,8 @@ class Video < ApplicationRecord
   has_one_attached :video_file
   has_many :comments, as: :commentable
 
+  has_many :video_categories
+  has_many :categories, through: :video_categories
 
   validates :title, 
     length: { in: 3..150, message: 'O título deve ser conciso.' },
