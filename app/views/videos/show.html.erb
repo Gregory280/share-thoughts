@@ -13,7 +13,18 @@
   <%= video_tag(url_for(@video.video_file), 
     style: 'width:100%; height: auto', controls: '') %>
 </div>
-
+<% if user_signed_in? %>
+  <% pre_like = @video.likes.find { |like| like.user_id == current_user.id } %>
+<% end %>
+<% if pre_like %>
+  <%= link_to video_like_path(@video, pre_like), method: :delete do %>
+    <i class="fas fa-star"></i> Unlike
+  <% end %>
+<% else %>
+  <%= link_to video_likes_path(@video), method: :post do %>
+    <i class="far fa-star"></i> Like
+  <% end %>
+<% end %>
 <p>
   <strong>by <%=link_to @video.user.username, user_path(@video.user) %></strong>
 </p>

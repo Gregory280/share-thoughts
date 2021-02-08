@@ -6,7 +6,7 @@ ruby '2.7.0'
 gem 'devise', '~> 4.2'
 gem "google-cloud-storage", "~> 1.11", require: false
 gem 'activestorage-validator', '~> 0.1.2'
-
+gem 'font_awesome5_rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.0'

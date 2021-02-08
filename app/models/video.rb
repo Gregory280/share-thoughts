@@ -2,7 +2,7 @@ class Video < ApplicationRecord
   belongs_to :user
   has_one_attached :video_file
   has_many :comments, as: :commentable
-
+  has_many :likes, dependent: :destroy
   has_many :video_categories
   has_many :categories, through: :video_categories
 

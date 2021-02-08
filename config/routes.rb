@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'comments/create'
   resources :videos do
     resources :comments, module: :videos
+    resources :likes
   end
   resources :comments 
   root to: 'pages#home'
