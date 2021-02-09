@@ -1,7 +1,12 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   helper_method :is_teacher?
-  
+  before_action :categories_navbar
+
+  def categories_navbar
+    @cat_navbar = Category.where(display_in_navbar: true)
+  end
+
   protected
 
   def configure_permitted_parameters

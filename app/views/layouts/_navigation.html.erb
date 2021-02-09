@@ -25,11 +25,10 @@
           Tópicos
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">vocabulary</a>
-          <a class="dropdown-item" href="#">writing</a>
-          <a class="dropdown-item" href="#">speaking</a>
-          <a class="dropdown-item" href="#">grammar</a>
-          <a class="dropdown-item" href="#">TOEFL</a>
+          <% @cat_navbar.each do |cat| %>
+            <%= link_to cat.title, videos_path(cat.title), class: 'dropdown-item' %>
+          <% end %> 
+          <%= link_to 'Ver todos', categories_path, class: 'dropdown-item' %>
         </div>
       </li>
     </ul>

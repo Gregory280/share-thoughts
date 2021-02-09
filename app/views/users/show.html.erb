@@ -17,7 +17,7 @@
                   <div class="">
                     <% if user_signed_in? && @user.email == current_user.email %>
                       <% if @user.teacher === true  %>
-                        <%= link_to 'Postar Aula', '#', class: "btn btn-success" %>
+                        <%= link_to 'Postar Aula', new_video_path, class: "btn btn-success" %>
                         <%= link_to 'Criar Post', '#', class: "btn btn-success" %>
                       <% end %>
                       <%= link_to 'Editar Conta', edit_user_registration_path, class: "btn btn-info" %>
