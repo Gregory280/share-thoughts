@@ -1,10 +1,42 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @category.title %>
-  <% @category_videos.each do |video| %>
-    <%= link_to video.title, video_path(video) %>
-  <% end %>
-</p>
+<div class="container d-flex justify-content-center mt-100 mb-100 ">
+  <div class="row">
+    <div class="col-md-12 streach-listing">
+        <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><%= @category.title %></h3>
+            </div>
+            <% @category.videos.each do |video| %>
+              <div class="comment-widgets m-b-20">
+                  <div class="d-flex flex-row comment-row">
+                      <div class="p-2"><span class="round"><%= gravatar_for video.user, size: 70, class: 'rounded mb-2 img-thumbnail' %></span></div>
+                      <div class="comment-text w-100 ml-2">
+                          <h3><%= link_to video.title, video %></h3>
+                          <div class="comment-footer">
+                            <b><small style="font-weight: bold">
+                              <%= video.user.name %>
+                            </small></b>
+                            <small class="date ml-3">
+                              <%= video.created_at.to_date %>
+                            </small>
+                              <% video.categories.each do |cat| %>
+                                <span class="label label-info ml-2 font-weight-bold text-uppercase">
+                                  <%= cat.title %>
+                                </span>
+                              <% end %>
+                          </div>
+                          <p class="m-b-5 m-t-10">
+                            <%= truncate(video.description, length: 300 ) %>
+                          </p>
+                      </div>
+                  </div>
+              </div>                 
+            <% end %>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+
 

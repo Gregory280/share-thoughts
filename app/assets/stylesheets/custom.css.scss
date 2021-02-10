@@ -2,6 +2,8 @@
 
 /* default */
 
+/*     font-family: 'Roboto', sans-serif; */
+
 /* navbar */
 .navbar-my-background {
   background: #007bff;
@@ -91,9 +93,7 @@ h4 {
 }
 
 /* custom icons*/
-.fa-star {
-  color: rgb(241, 218, 4);
-}
+
 
 
 /* listing videos */
@@ -167,4 +167,28 @@ h4 {
 
 .streach-listing {
   width:960px!important;
+}
+
+/* show video page */
+.grid-container {
+  display: grid;
+  grid-template-columns: 0.5fr 1.5fr;
+  grid-template-rows: 1fr auto;
+  gap: 15px 15px;
+  grid-template-areas:
+    "navbar-left video-content"
+    "navbar-left commentarios"
+    ;
+}
+
+
+.navbar-left { grid-area: navbar-left; max-height: 1000px;overflow:auto;-webkit-overflow-scrolling: touch;}
+
+.video-content { grid-area: video-content; height: min-content; }
+
+.commentarios { grid-area: commentarios;}
+
+/* navbar-left */
+.navbar-left p {
+  font-size:20px;
 }

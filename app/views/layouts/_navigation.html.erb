@@ -26,7 +26,7 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <% @cat_navbar.each do |cat| %>
-            <%= link_to cat.title, videos_path(cat.title), class: 'dropdown-item' %>
+            <%= link_to cat.title, category_path(cat), class: 'dropdown-item' %>
           <% end %> 
           <%= link_to 'Ver todos', categories_path, class: 'dropdown-item' %>
         </div>

@@ -7,7 +7,8 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.new(comment_params)
     @comment.user = current_user
     @comment.save
-    redirect_to @commentable, notice: "Comentário realizado com sucesso"
+    redirect_to request.referrer, notice: "Comentário realizado com sucesso"
+    #Antes era redirect_to @commentable
   end
 
   private

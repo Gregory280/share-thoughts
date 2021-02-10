@@ -1,4 +1,10 @@
 <%= form_for [commentable, Comment.new] do |f| %>
-  <%= f.text_area :body, required: true %>
-  <%= f.submit %>
+  <div class="form-group">
+    <%= f.text_area :body, required: true, class: "form-control" %>
+    <% if user_signed_in? %>
+      <%= f.submit "Comentar", class: "btn btn-primary mt-2" %>
+    <% else %>
+      <%= link_to 'Realizar login para comentar', new_user_session_path, class: "btn btn-primary mt-2" %>
+    <% end %>
+  </div>
 <% end %>

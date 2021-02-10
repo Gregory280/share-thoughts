@@ -1,39 +1,110 @@
-
-<p>
-  <strong>Title:</strong>
-  <%= @video.title %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @video.description %>
-</p>
-
-<div style="width:400px; height:300px">
-  <%= video_tag(url_for(@video.video_file), 
-    style: 'width:100%; height: auto', controls: '') %>
+<div class="grid-container">
+  
+  <div class="video-content shadow-lg p-3 bg-white rounded">
+    <h3><%= @video.title %></h3>
+    <div>
+      <%= video_tag(url_for(@video.video_file), 
+        size: "750x450", controls: true, class: 'ml-3') %>
+    </div>
+    <div class="mt-2 ml-3">
+      <span>Aula por: <%= link_to @video.user.name, user_path(@video.user) %></span> |
+      <span>Tópicos: </span>
+      <% @video.categories.each do |cat| %>
+        <span class="label label-info ml-2 font-weight-bold text-uppercase">
+          <%= cat.title %>
+        </span>
+      <% end %>
+      <br/>
+      <hr>
+      <% if user_signed_in? %>
+        <% pre_like = @video.likes.find { |like| like.user_id == current_user.id } %>
+      <% end %>
+      <% if pre_like %>
+        <div class="mt-2">
+          <span>Você curtiu esta aula </span>
+          <%= link_to video_like_path(@video, pre_like), method: :delete do %>
+            <button type="button" class="btn btn-sm btn-warning"><span style="font-size:18px;"><%= @video.likes.count %></span><i class="ml-1 fas fa-star fa-lg"></i></button>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="mt-2">
+          <span>Gostou da aula? Dê uma </span>
+          <%= link_to video_likes_path(@video), method: :post do %>
+            <button type="button" class="btn btn-sm btn-warning"><i class="ml-1 far fa-star fa-lg"></i><p style="display: inline"> (<%= @video.likes.count %>)</p></button>
+          <% end %>
+        </div>
+      <% end %>
+      <hr>
+      <i><h4 class="mt-2">Sobre essa aula</h4></i>
+      <p class="ml-3"><%= @video.description %></p>
+    </div>
+  </div>
+  <div class="navbar-left shadow-lg p-3 mb-5 bg-white rounded">
+    <p class="font-weight-bold">NÍVEIS</p>
+    <ul class="list-group list-group-flush">
+      <% @levels.each do |level| %>
+        <li class="list-group-item"><%= link_to level.title, category_path(level) %></li>
+      <% end %>
+    </ul>
+    <p class="font-weight-bold mt-5">Tópicos</p>
+    <ul class="list-group list-group-flush">
+      <% @categories.each do |cat| %>
+        <li class="list-group-item"><%= link_to cat.title, category_path(cat) %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="commentarios shadow-lg p-3 bg-white rounded">
+    <i><p class="text-muted">Dúvias? Sugestões? Elogios? Deixe um comentário!</p></i>
+    <%= render 'comments/form', commentable: @video %>
+    <h3 class="mb-4">Comentários <span>(<%= @video.comments.count %>)</span></h3>
+    <%= render 'comments/comments', commentable: @video %>
+  </div>
 </div>
-<% if user_signed_in? %>
-  <% pre_like = @video.likes.find { |like| like.user_id == current_user.id } %>
-<% end %>
-<% if pre_like %>
-  <%= link_to video_like_path(@video, pre_like), method: :delete do %>
-    <i class="fas fa-star"></i> Unlike
-  <% end %>
-<% else %>
-  <%= link_to video_likes_path(@video), method: :post do %>
-    <i class="far fa-star"></i> Like
-  <% end %>
-<% end %>
-<p>
-  <strong>by <%=link_to @video.user.username, user_path(@video.user) %></strong>
-</p>
-<% @video.categories.each do |category| %>
-  <%= category.title %>
-<% end %>
-<%= render 'comments/comments', commentable: @video %>
-<%= render 'comments/form', commentable: @video %>
-<%= link_to 'Edit', edit_video_path(@video) %> |
-<%= link_to 'Back', videos_path %>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<% if false %>
+  <p>
+    <strong>Title:</strong>
+    <%= @video.title %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= @video.description %>
+  </p>
+
+  <div style="width:400px; height:300px">
+    <%= video_tag(url_for(@video.video_file), 
+      style: 'width:100%; height: auto', controls: '') %>
+  </div>
+  
+  
+  <p>
+    <strong>by <%=link_to @video.user.username, user_path(@video.user) %></strong>
+  </p>
+  <% @video.categories.each do |category| %>
+    <%= category.title %>
+  <% end %>
+  
+  
+  <%= link_to 'Edit', edit_video_path(@video) %> |
+  <%= link_to 'Back', videos_path %>
+<% end %>
 

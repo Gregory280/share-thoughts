@@ -8,6 +8,8 @@ class VideosController < ApplicationController
 
   # GET /videos/1
   def show
+    @categories = categories
+    @levels = levels
   end
 
   # GET /videos/new

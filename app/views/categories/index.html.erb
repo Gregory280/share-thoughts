@@ -1,9 +1,34 @@
-<p id="notice"><%= notice %></p>
+<div class="container d-flex justify-content-center mt-100 mb-100 ">
+  <div class="row">
+    <div class="col-md-12 streach-listing">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Todos tópicos</h3>
+        </div>
+        <% @categories.each do |category| %>
+          <div class="comment-widgets m-b-20">
+            <div class="d-flex flex-row comment-row">
+              <div class="comment-text w-100 ml-2 d-inline-flex">
+                  <h3 class="mr-auto"><%= link_to category.title, category, class: 'p-2 text-capitalize' %></h3>
+                  <%= link_to "Ver vídeos", category, class:"btn btn-outline-primary" %></span>
+              </div>
+            </div>
+          </div>                 
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
 
-<h1>Categories</h1>
 
-<% @categories.each do |category| %>
-  <%= link_to category.title, category_path(category) %>
+
+<% if false %>
+  <p id="notice"><%= notice %></p>
+
+  <h1>Categories</h1>
+
+  <% @categories.each do |category| %>
+    <%= link_to category.title, category_path(category) %>
+  <% end %>
 <% end %>
-
 
