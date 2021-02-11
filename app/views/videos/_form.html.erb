@@ -11,25 +11,47 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <div class="field form-group">
+          <%= form.label :title, 'Título' %><br/>
+          <%= form.text_field :title, class: 'form-control' %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="field form-group">
+          <%= form.label :description, 'Descrição' %><br/>
+          <%= form.text_area :description, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="form-group">
+            <%= form.label :category, 'Tópicos relacionados' %><br/>
+            <%= form.collection_check_boxes(:category_ids, Category.all, :id, :title, { prompt: 'None'}, { multiple: true} ) do |cat| %>
+              <label class="checkbox-inline">
+                <%= cat.check_box %>
+                <%= cat.label %>
+              </label>
+            <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="field form-group"><i>(Somente arquivo com extensão .mp4)</i>
+          <%= form.file_field :video_file, class: 'form-control-file'  %>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <%= form.submit "Postar", class: 'btn btn-success px-3' %>
+    </div>
   </div>
+  
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.file_field :video_file %>
-  </div>
-
-  <div>
-    <%= form.label :category %>
-    <%= form.collection_check_boxes(:category_ids, Category.all, :id, :title, { prompt: 'None'}, { multiple: true}) %>
-  </div>
-  <div class="actions">
-    <%= form.submit %>
-  </div>
 <% end %>
