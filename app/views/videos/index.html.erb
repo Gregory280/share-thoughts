@@ -24,7 +24,7 @@
                                     </span>
                                   <% end %>
                               </div>
-                              <p class="m-b-5 m-t-10">
+                              <p class="m-b-5 m-t-10 mt-2">
                                 <%= truncate(video.description, length: 300 ) %>
                               </p>
                           </div>
@@ -34,6 +34,9 @@
             </div>
         </div>
     </div>
+  </div>
+  <div class="d-flex justify-content-center mt-4">
+    <%= paginate @videos %>
   </div>
 
 

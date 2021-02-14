@@ -10,7 +10,8 @@ class PagesController < ApplicationController
   end
 
   def teachers
-    @teachers = User.where(teacher: true)
+    @teachers = User.where(teacher: true).page params[:page]
   end
 
 end
+

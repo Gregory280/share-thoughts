@@ -141,6 +141,18 @@ GEM
     i18n (1.8.8)
       concurrent-ruby (~> 1.0)
     jwt (2.2.2)
+    kaminari (1.2.1)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.1)
+      kaminari-activerecord (= 1.2.1)
+      kaminari-core (= 1.2.1)
+    kaminari-actionview (1.2.1)
+      actionview
+      kaminari-core (= 1.2.1)
+    kaminari-activerecord (1.2.1)
+      activerecord
+      kaminari-core (= 1.2.1)
+    kaminari-core (1.2.1)
     listen (3.4.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -291,6 +303,7 @@ DEPENDENCIES
   devise (~> 4.2)
   font_awesome5_rails
   google-cloud-storage (~> 1.11)
+  kaminari (~> 1.2, >= 1.2.1)
   listen (~> 3.3)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)

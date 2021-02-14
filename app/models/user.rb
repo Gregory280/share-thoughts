@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
+  #mudar pra 6 ou mais depois
+  paginates_per 3
 
   has_many :likes, dependent: :destroy
   has_many :videos

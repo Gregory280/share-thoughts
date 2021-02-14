@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    @user.name.sub!(/(.+\b.).+\z/, '\1.')
     @likes = count_videos_likes(@user)
     @comments = count_videos_comments(@user)
   end

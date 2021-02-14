@@ -19,16 +19,7 @@
     </div>
   </div>
 </div>
-
-
-
-<% if false %>
-  <p id="notice"><%= notice %></p>
-
-  <h1>Categories</h1>
-
-  <% @categories.each do |category| %>
-    <%= link_to category.title, category_path(category) %>
-  <% end %>
-<% end %>
+<div class="d-flex justify-content-center mt-4">
+    <%= paginate @categories %>
+</div>
 
