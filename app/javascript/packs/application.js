@@ -5,14 +5,17 @@
 
 import "jquery"
 import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
+import "@hotwired/turbo-rails"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 require("@fortawesome/fontawesome-free")
 
 
 Rails.start()
-Turbolinks.start()
-ActiveStorage.start()
+//ActiveStorage.start()
 
 import "bootstrap"
+
+require("trix")
+require("@rails/actiontext")
+import "controllers"

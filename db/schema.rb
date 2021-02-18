@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_08_021825) do
+ActiveRecord::Schema.define(version: 2021_02_16_153527) do
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -48,12 +58,13 @@ ActiveRecord::Schema.define(version: 2021_02_08_021825) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.string "commentable_type"
-    t.integer "commentable_id"
     t.integer "user_id", null: false
-    t.text "body"
+    t.string "commentable_type", null: false
+    t.integer "commentable_id", null: false
+    t.integer "parent_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 

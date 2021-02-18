@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   resources :categories, except: [:new, :edit, :delete]
   get 'comments/create'
+  resources :comments do
+    resources :comments, module: :comments
+  end
   resources :videos do
     resources :comments, module: :videos
     resources :likes
   end
-  resources :comments 
   root to: 'pages#home'
   devise_for :users
   resources :users, only: [:show, :edit]

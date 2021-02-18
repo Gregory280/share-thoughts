@@ -9,15 +9,14 @@ class User < ApplicationRecord
 
   has_many :likes, dependent: :destroy
   has_many :videos
-
+  has_many :comments
   validates :email, 
     uniqueness: { message: 'Email já cadastrado.' }
 
   validates :username,
     uniqueness: { message: 'Nome de Usuário já cadastrado.' },
     length: { in: 3..25, 
-      message: 'Nome de usuário com tamanho inválido.' },
-    presence: { message: 'Nome de usuário não pode ser vazio.' }
+      message: 'Nome de usuário com tamanho inválido.' }
 
   validates :name,
     length: { in: 3..50,

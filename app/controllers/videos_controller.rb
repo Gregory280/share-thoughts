@@ -25,19 +25,24 @@ class VideosController < ApplicationController
   def create
     @video = Video.new(video_params)
     @video.user = current_user
-    if @video.save
-      redirect_to @video, notice: 'Video was successfully created.'
-    else
-      render :new
+    respond_to do |format|
+      if @video.save
+        format.html { redirect_to @video }
+      else
+        render :new
+      end
     end
   end
 
   
   def update
-    if @video.update(video_params)
-      redirect_to @video, notice: 'Video was successfully updated.'
-    else
-      render :edit
+    respond_to do |format|
+      if @video.update(video_params)
+        format.turbo_stream { redirect_to @video }
+        format.html { redirect_to @video, notice: 'Video was successfully updated.' }
+      else
+        render :edit
+      end
     end
   end
 

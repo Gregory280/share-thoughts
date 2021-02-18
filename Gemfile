@@ -8,6 +8,7 @@ gem "google-cloud-storage", "~> 1.11", require: false
 gem 'activestorage-validator', '~> 0.1.2'
 gem 'font_awesome5_rails'
 gem 'kaminari', '~> 1.2', '>=1.2.1'
+gem 'image_processing', '~> 1.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.0'
 # Use sqlite3 as the database for Active Record
@@ -19,11 +20,11 @@ gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 #gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
@@ -59,3 +60,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem "hotwire-rails", "~> 0.1.3"

@@ -1,3 +1,4 @@
+<%= turbo_frame_tag  resource_name do %>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -11,9 +12,12 @@
         
         <div class="col">
           <div class="field form-group">
-            <%= f.label :username, 'Usuário'  %><i> (seu nome de usuário é único)</i><br/>
-            <%= f.text_field :username, class: "form-control" %>
+            <fieldset disabled>
+              <%= f.label :username, 'Usuário', for: 'disabledTextInput'  %><i> (seu nome de usuário é único)</i><br/>
+              <%= f.text_field :username, class: "form-control", id: 'disabledTextInput' %>
+            </fieldset>
           </div>
+          
         </div>
 
         <div class="col">
@@ -62,7 +66,8 @@
       <div class="actions">
         <%= f.submit "Confirmar", class: "btn btn-success mt-2" %>
       </div>
-    <% end %>
+<% end %>
+<% end %>
     </div>
   </div>
   <br/>

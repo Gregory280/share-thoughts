@@ -1,11 +1,12 @@
 <div class="grid-container">
   
   <div class="video-content shadow-lg p-3 bg-white rounded">
-    <h3><%= @video.title %></h3>
-    <div>
+    
+    <div class="d-flex justify-content-center mb-3">
       <%= video_tag(url_for(@video.video_file), 
-        size: "750x450", controls: true, class: 'ml-3') %>
+        size: "750x450", controls: true, class: ' video-tag') %>
     </div>
+    <h3><%= @video.title %></h3>
     <div class="mt-2 ml-3">
       <span>Aula por: <%= link_to @video.user.name, user_path(@video.user) %></span> |
       <span>Tópicos: </span>
@@ -39,72 +40,49 @@
       <p class="ml-3"><%= @video.description %></p>
     </div>
   </div>
-  <div class="navbar-left shadow-lg p-3 mb-5 bg-white rounded">
-    <p class="font-weight-bold">NÍVEIS</p>
-    <ul class="list-group list-group-flush">
-      <% @levels.each do |level| %>
-        <li class="list-group-item"><%= link_to level.title, category_path(level) %></li>
-      <% end %>
-    </ul>
-    <p class="font-weight-bold mt-5">Tópicos</p>
-    <ul class="list-group list-group-flush">
-      <% @categories.each do |cat| %>
-        <li class="list-group-item"><%= link_to cat.title, category_path(cat) %></li>
-      <% end %>
-    </ul>
-  </div>
+
   <div class="commentarios shadow-lg p-3 bg-white rounded">
     <i><p class="text-muted">Dúvias? Sugestões? Elogios? Deixe um comentário!</p></i>
-    <%= render 'comments/form', commentable: @video %>
-    <h3 class="mb-4">Comentários <span>(<%= @video.comments.count %>)</span></h3>
-    <%= render 'comments/comments', commentable: @video %>
+    <h3 class="mb-3">Comentários</h3>
+    <% if user_signed_in? %>
+
+      <%= render partial: "comments/form", locals: { comment: Comment.new, commentable: @video } %>
+    <% else %>
+      <%= link_to 'Realizar login', new_user_session_path, class: "btn btn-primary mt-2" %>
+    <% end %>
+    <%= turbo_stream_from @video, :comments %>
+    <%= tag.div id: "#{dom_id(@video)}_comments" do %>
+      <%= render partial: "comments/comment_with_replies", collection: @video.comments, as: :comment %>
+    <% end %>
   </div>
+
+
+
+
+
+
+
+  <% if false %>
+    <div class="navbar-left shadow-lg p-3 mb-5 bg-white rounded">
+      <p class="font-weight-bold">NÍVEIS</p>
+      <ul class="list-group list-group-flush">
+        <% @levels.each do |level| %>
+          <li class="list-group-item"><%= link_to level.title, category_path(level) %></li>
+        <% end %>
+      </ul>
+      <p class="font-weight-bold mt-5">Tópicos</p>
+      <ul class="list-group list-group-flush">
+        <% @categories.each do |cat| %>
+          <li class="list-group-item"><%= link_to cat.title, category_path(cat) %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
 </div>
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<% if false %>
-  <p>
-    <strong>Title:</strong>
-    <%= @video.title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= @video.description %>
-  </p>
-
-  <div style="width:400px; height:300px">
-    <%= video_tag(url_for(@video.video_file), 
-      style: 'width:100%; height: auto', controls: '') %>
-  </div>
-  
-  
-  <p>
-    <strong>by <%=link_to @video.user.username, user_path(@video.user) %></strong>
-  </p>
-  <% @video.categories.each do |category| %>
-    <%= category.title %>
-  <% end %>
-  
-  
-  <%= link_to 'Edit', edit_video_path(@video) %> |
-  <%= link_to 'Back', videos_path %>
-<% end %>
 
