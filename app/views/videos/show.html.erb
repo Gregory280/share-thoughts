@@ -1,3 +1,123 @@
+<header class="bg-gray-light">
+  <div class="max-w-7xl mx-auto py-2 px-2 sm:px-6 lg:px-8">
+    <h3 class="leading-6 text-white-sm navbar-margins">
+      <%= link_to 'Todos Vídeos', videos_path , class:'header-text text-white text-decoration-none text-v-sm' %>
+      <span class="mx-2 text-white text-v-sm">/</span>
+      <p class="text-white text-v-sm d-inline"><%= @video.title %></p>
+    </h3>
+  </div>
+</header>
+  <main class="flex-grow">
+    <div class="bg-black">
+      <div class="container mx-auto">
+        <%= video_tag(url_for(@video.video_file), 
+          controls: true, class: ' video-tag') %>
+      </div>
+    </div>
+    <div class="container">
+      <div class="d-flex">
+        <div class="p-1 mt-3 flex-grow-1">
+          <div class="flex-grow">
+              <h3 class="text-xl tracking-tight leading-3 text-bold">
+                <p class="font-weight-bold"><%= @video.title %></p>
+              </h3>
+              <small class="text-sm mt-4 text-gray">
+                 Publicado em <%= @video.created_at.to_date %>
+              </small>
+              <div class="mt-2">
+                <% @video.categories.each do |cat| %>
+                  <span class="inline-flex items-center px-2 py-0.5 rounded bg-blue mr-2">
+                    <span class="badge badge-secondary"><%= cat.title %></span>
+                  </span>
+                <% end %>
+              </div>
+            </div>
+        </div>
+        <div class="p-2">
+          <ul class="list-group list-group-horizontal-md">
+            <li class="list-group-item">
+              <a class="-ml-px inline-flex items-center">
+                <% if user_signed_in? %>
+                  <% pre_like = @video.likes.find { |like| like.user_id == current_user.id } %>
+                <% end %>
+                <% if pre_like %>
+                  <%= link_to video_like_path(@video, pre_like), class: ' text-reset text-decoration-none', method: :delete do %>
+                    <i class="fas fa-heart mr-1"></i><%= @video.likes.count %>
+                  <% end %>
+                <% else %>
+                  <%= link_to video_likes_path(@video), class: 'text-reset text-decoration-none' , method: :post do %>
+                    <i class="far fa-heart mr-1"></i><%= @video.likes.count %>
+                  <% end %>
+                <% end %>
+              </a>
+            </li>
+            <li class="list-group-item">
+              <a class="-ml-px inline-flex items-center border border-gray-300">
+                <i class="far fa-bookmark"></i>
+              </a>
+            </li>
+            <li class="list-group-item">
+              <a class="-ml-px inline-flex items-center border border-gray-300">
+                <i class="fas fa-download"></i>
+              </a>
+            </li>
+            <li class="list-group-item">
+              <a class="-ml-px inline-flex items-center ">
+                Share
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="mx-auto px- flex flex-wrap mt-2">
+        <div class="bg-video-author rounded-md sm:rounded-lg mt-4">
+          <div class="px-3 py-4">
+            <div class="d-flex justify-content-between">
+              <h4 class="">
+                Seu Professor | <%= @video.user.name %>
+              </h4>
+              <span class=" rounded-pill mb-2 btn btn-sm btn-dark">Perfil</span>
+            </div>
+            <div class="d-inline-flex">
+              <div class="mr-3">
+                <%= gravatar_for @video.user, size: 50 %>
+              </div>
+              <p class="text-gray">
+                <%= truncate(@video.user.about, length: 220)  %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-3">
+        <h4 class="font-weight-bold">Sobre essa Aula</h4>
+        <p class="text-justify"><%= @video.description %></p>
+      </div>
+      <hr>
+      <div class="commentarios">
+        <i><p class="text-muted">Dúvias? Sugestões? Elogios? Deixe um comentário!</p></i>
+        <p class="mb-2 h4">Comentários</p>
+        <% if user_signed_in? %>
+          <%= render partial: "comments/form", locals: { comment: Comment.new, commentable: @video } %>
+        <% else %>
+          <%= link_to 'Realizar login', new_user_session_path, class: "btn btn-primary mt-2" %>
+        <% end %>
+        <%= turbo_stream_from @video, :comments %>
+        <%= tag.div id: "#{dom_id(@video)}_comments" do %>
+          <%= render partial: "comments/comment_with_replies", collection: @video.comments.where(parent_id: nil), as: :comment %>
+        <% end %>
+      </div>
+    </div>
+
+    
+
+  </main>
+
+
+
+<% if false %>
 <div class="grid-container">
   
   <div class="video-content shadow-lg p-3 bg-white rounded">
@@ -41,21 +161,8 @@
     </div>
   </div>
 
-  <div class="commentarios shadow-lg p-3 bg-white rounded">
-    <i><p class="text-muted">Dúvias? Sugestões? Elogios? Deixe um comentário!</p></i>
-    <h3 class="mb-3">Comentários</h3>
-    <% if user_signed_in? %>
-
-      <%= render partial: "comments/form", locals: { comment: Comment.new, commentable: @video } %>
-    <% else %>
-      <%= link_to 'Realizar login', new_user_session_path, class: "btn btn-primary mt-2" %>
-    <% end %>
-    <%= turbo_stream_from @video, :comments %>
-    <%= tag.div id: "#{dom_id(@video)}_comments" do %>
-      <%= render partial: "comments/comment_with_replies", collection: @video.comments, as: :comment %>
-    <% end %>
-  </div>
-
+    
+<% end %>
 
 
 

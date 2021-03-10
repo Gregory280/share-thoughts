@@ -1,13 +1,11 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_comment
-  
-  def show
 
+  def show
   end
 
   def edit
-
   end
 
   def update

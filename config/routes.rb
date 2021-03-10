@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :posts
   resources :categories, except: [:new, :edit, :delete]
   get 'comments/create'
   resources :comments do
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
     resources :likes
   end
   root to: 'pages#home'
+  get 'search', to: 'pages#search'
   devise_for :users
   resources :users, only: [:show, :edit]
   get 'about', to: 'pages#about'

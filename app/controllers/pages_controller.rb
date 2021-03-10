@@ -6,7 +6,10 @@ class PagesController < ApplicationController
   end
 
   def about
+  end
 
+  def search
+    @results = Video.where("title LIKE ?", "%" + params[:q] + "%")
   end
 
   def teachers

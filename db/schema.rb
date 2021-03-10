@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_16_153527) do
+ActiveRecord::Schema.define(version: 2021_02_19_190109) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -77,6 +77,14 @@ ActiveRecord::Schema.define(version: 2021_02_16_153527) do
     t.index ["video_id"], name: "index_likes_on_video_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -113,5 +121,6 @@ ActiveRecord::Schema.define(version: 2021_02_16_153527) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "users"
   add_foreign_key "likes", "videos"
+  add_foreign_key "posts", "users"
   add_foreign_key "videos", "users"
 end

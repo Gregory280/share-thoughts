@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :categories_navbar
   helper_method :levels
 
+  
   def categories_navbar
     @cat_navbar = Category.where(display_in_navbar: true)
   end

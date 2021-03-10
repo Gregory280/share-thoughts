@@ -1,45 +1,89 @@
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="margin-bottom:35px">
+<div class="bg-gray">
+<nav class="navbar navbar-expand-lg navbar-dark navbar-margins">
   <%= link_to root_path do %>
-    <%= image_tag("logo.png", width: "160", height:"45") %>
+    <%= image_tag("logo3.svg", width: "160", height:"45") %>
   <% end %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav mr-auto ml-4">
-      <li class="nav-item pl-2">
+    <ul class="navbar-nav navbar-nav-left mr-auto ml-4">
+      <li class="nav-item pl-1 pr-1">
         <%= link_to 'Home', root_path, class: 'nav-link font-weight-bold text-white' %>
       </li>
-      <li class="nav-item px-2">
-        <%= link_to 'Sobre', about_path, class: 'nav-link font-weight-bold text-white' %>
-      </li>
-      <li class="nav-item px-2">
-        <%= link_to 'Todos Vídeos', videos_path, class: 'nav-link font-weight-bold text-white' %>
+      <li class="nav-item dropdown px-2">
+        <a class="nav-link dropdown-toggle font-weight-bold text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Estudar
+        </a>
+        <div class="dropdown-menu dropdownmenu2" aria-labelledby="navbarDropdownMenuLink">
+          
+          <div class="list-group px-4 py-3">
+            <div class="mb-3">
+              <%= link_to videos_path, class: "text-decoration-none text-reset flex-column align-items-start" do %>
+                <div class="d-flex justify-content-start">
+                  <i class="fas fa-caret-square-right"></i>
+                  <p class="mb-1 ml-2 font-weight-bold">Todos Vídeos</p>
+                </div>
+                <small class="text-secondary">
+                  Veja os últimos vídeos de todos professores e cateogiras.
+                </small>
+              <% end %>
+            </div>
+            <div class="mb-3">
+              <a href="#" class="teste2 text-decoration-none text-reset">
+                <div class="d-flex justify-content-start ">
+                  <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                  <p class="mb-1 ml-2 font-weight-bold">Tópicos</p>
+                </div>
+                <small class="mb-1 text-secondary">
+                  Comece seus estudos de acordo com suas necessidades.
+                </small>
+              </a>
+            </div>
+            <a href="#" class="text-decoration-none text-reset flex-column align-items-start">
+              <div class="d-flex justify-content-start ">
+                <i class="fa fa-file-text" aria-hidden="true"></i>
+                <p class="mb-1 ml-2 font-weight-bold">Exames</p>
+              </div>
+              <small class="mb-1 text-secondary">
+                Veja dicas, como estudar e conteúdos relacionados as principais provas de proficiência.
+              </small>
+            </a>
+          </div> 
+        </div>
       </li>
       <li class="nav-item px-2">
         <%= link_to 'Professores', teachers_path, class: 'nav-link font-weight-bold text-white' %>
       </li>
-      <li class="nav-item dropdown px-2">
-        <a class="nav-link dropdown-toggle font-weight-bold text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Tópicos
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <% @cat_navbar.each do |cat| %>
-            <%= link_to cat.title, category_path(cat), class: 'dropdown-item' %>
-          <% end %> 
-          <%= link_to 'Ver todos', categories_path, class: 'dropdown-item' %>
-        </div>
-      </li>
     </ul>
-    <ul class="navbar-nav">
-      <% if user_signed_in? %>
-        <%= link_to current_user, class: 'mr-2' do %>
-          <button class="btn btn-info">Perfil</button>
+    <form action="/search">
+      <div class="searchbar mr-3">
+        <input class="search_input" type="search" name="q" placeholder="Pesquisar...">
+        <button href="#" class="search_icon"><i class="fas fa-search"></i></button>
+      </div>
+    </form>
+    <ul class="navbar-nav navbar-nav-right">
+      <% if current_user %>
+        <%= link_to "#", class: 'pt-1 align-self-center' do %>
+          <i class="fas fa-bookmark fa-bookmark-color fa-lg"></i>
         <% end %>
-        <%= link_to destroy_user_session_path, method: :delete do %>
-          <button class="btn btn-info">Sair</button>
-        <% end %>
+        <li class="nav-item nav-item-profile dropdown px-2">
+          <a class="nav-link font-weight-bold text-white" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= gravatar_for current_user, size: 35 %>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdownMenuLink">
+            <li>
+              <%= link_to current_user, class: 'dropdown-item text-white profile-links' do %>
+                <i class="fas fa-user fa-sm mr-1"></i> Seu Perfil
+              <% end %>
+              <%= link_to edit_user_registration_path, class: 'dropdown-item text-white profile-links' do %>
+                <i class="fas fa-cog"></i> Editar
+              <% end %>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><%= link_to 'Sair', destroy_user_session_path, method: :delete, class: 'dropdown-item text-white sair-btn' %></li>
+          </ul>
+        </li>
       <% else %>
         <%= link_to new_user_registration_path, class: 'mr-2' do %>
           <button class="btn btn-info">Criar Conta</button>
@@ -51,4 +95,4 @@
     </ul>
   </div>
 </nav>
-
+</div>
