@@ -1,4 +1,147 @@
-<div class="container d-flex justify-content-center mt-100 mb-100 ">
+<div class="container">
+  <div class="row mt-20">
+    <div class="col-lg-9 mx-auto">
+      <div id="accordionExample" class="accordion shadow" >
+        <div class="card">
+          <div id="headingOne" style="background:rgba(17,24,39,1)!important" class="card-header bg-white shadow-sm border-0">
+            <h6 class="mb-0 font-weight-bold">
+              <a href="#" data-toggle="collapse" data-target="#collapseOne"
+                aria-expanded="true" aria-controls="collapseOne" class="text-decoration-none d-block  position-relative text-white text-uppercase collapsible-link py-2">
+                  Habilidades Linguísticas 
+              </a>
+            </h6>
+          </div>
+          <div id="collapseOne" aria-labelledby="headingOne"  class="collapse show">
+            <div class="card-body p-4">
+              <ul class="list-group list-group-flush">
+                <% Category.skills.each do |cat| %>
+                <li class="text-capitalize list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <%= link_to cat.title, cat %>
+                  </div>
+                  <span class="badge badge-primary badge-pill "><%= pluralize(cat.videos.count, 'video') %></span>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div id="headingTwo" style="background:rgba(17,24,39,1)!important" class="card-header bg-white shadow-sm border-0">
+            <h6 class="mb-0 font-weight-bold">
+              <a href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" 
+                aria-controls="collapseTwo" class="text-decoration-none d-block position-relative text-white collapsed  text-uppercase collapsible-link py-2">
+                  Língua Inglesa
+              </a>
+            </h6>
+          </div>
+          <div id="collapseTwo" aria-labelledby="headingTwo"  class="collapse">
+            <div class="card-body p-4">
+              <ul class="list-group list-group-flush">
+                <% Category.language.each do |cat| %>
+                <li class="text-capitalize list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <%= link_to cat.title, cat %>
+                    
+                  </div>
+                  <span class="badge badge-primary badge-pill "><%= pluralize(cat.videos.count, 'video') %></span>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div id="headingThree" style="background:rgba(17,24,39,1)!important" class="card-header bg-white shadow-sm border-0">
+            <h6 class="mb-0 font-weight-bold">
+              <a href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false"  
+                aria-controls="collapseThree" class="text-decoration-none d-block position-relative collapsed text-white  text-uppercase collapsible-link py-2">
+                  Níveis
+              </a>
+            </h6>
+          </div>
+          <div id="collapseThree" aria-labelledby="headingThree" class="collapse">
+            <div class="card-body p-4">
+              <ul class="list-group list-group-flush">
+                <% Category.level.each do |cat| %>
+                <li class="text-capitalize list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <%= link_to cat.title, cat %>
+                  </div>
+                  <span class="badge badge-primary badge-pill "><%= pluralize(cat.videos.count, 'video') %></span>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div id="headingFour" style="background:rgba(17,24,39,1)!important" class="card-header bg-white shadow-sm border-0">
+            <h6 class="mb-0 font-weight-bold">
+              <a href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false"  
+                aria-controls="collapseFour" class="text-decoration-none d-block position-relative text-white collapsed  text-uppercase collapsible-link py-2">
+                  Provas de Proficiência
+              </a>
+            </h6>
+          </div>
+          <div id="collapseFour" aria-labelledby="headingFour" class="collapse">
+            <div class="card-body p-4">
+              <ul class="list-group list-group-flush">
+                <% Category.exams.each do |cat| %>
+                <li class="text-capitalize list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <%= link_to cat.title, cat %>
+                  </div>
+                  <span class="badge badge-primary badge-pill "><%= pluralize(cat.videos.count, 'video') %></span>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div id="headingFive" style="background:rgba(17,24,39,1)!important" class="card-header bg-white shadow-sm border-0">
+            <h6 class="mb-0 font-weight-bold">
+              <a href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false"  
+                aria-controls="collapseFive" class="text-decoration-none d-block position-relative collapsed text-white text-uppercase collapsible-link py-2">
+                  Outros tópicos
+              </a>
+            </h6>
+          </div>
+          <div id="collapseFive" aria-labelledby="headingFive" class="collapse">
+            <div class="card-body p-4">
+              <ul class="list-group list-group-flush">
+                <% Category.other.each do |cat| %>
+                <li class="text-capitalize list-group-item d-flex justify-content-between align-items-center">
+                  <div>
+                    <%= link_to cat.title, cat %>
+                  </div>
+                  <span class="badge badge-primary badge-pill "><%= pluralize(cat.videos.count, 'video') %></span>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+ 
+
+
+
+
+
+
+
+
+<% if false %>
   <div class="row">
     <div class="col-md-12 streach-listing">
       <div class="card">
@@ -18,8 +161,4 @@
       </div>
     </div>
   </div>
-</div>
-<div class="d-flex justify-content-center mt-4">
-    <%= paginate @categories %>
-</div>
-
+<% end %>

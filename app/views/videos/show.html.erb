@@ -77,7 +77,8 @@
               <h4 class="">
                 Seu Professor | <%= @video.user.name %>
               </h4>
-              <span class=" rounded-pill mb-2 btn btn-sm btn-dark">Perfil</span>
+              <%= link_to 'Perfil', user_path(@video.user), class: 'rounded-pill mb-2 btn btn-sm btn-dark' %>
+              
             </div>
             <div class="d-inline-flex">
               <div class="mr-3">
@@ -117,66 +118,13 @@
 
 
 
-<% if false %>
-<div class="grid-container">
-  
-  <div class="video-content shadow-lg p-3 bg-white rounded">
-    
-    <div class="d-flex justify-content-center mb-3">
-      <%= video_tag(url_for(@video.video_file), 
-        size: "750x450", controls: true, class: ' video-tag') %>
-    </div>
-    <h3><%= @video.title %></h3>
-    <div class="mt-2 ml-3">
-      <span>Aula por: <%= link_to @video.user.name, user_path(@video.user) %></span> |
-      <span>Tópicos: </span>
-      <% @video.categories.each do |cat| %>
-        <span class="label label-info ml-2 font-weight-bold text-uppercase">
-          <%= cat.title %>
-        </span>
-      <% end %>
-      <br/>
-      <hr>
-      <% if user_signed_in? %>
-        <% pre_like = @video.likes.find { |like| like.user_id == current_user.id } %>
-      <% end %>
-      <% if pre_like %>
-        <div class="mt-2">
-          <span>Você curtiu esta aula </span>
-          <%= link_to video_like_path(@video, pre_like), method: :delete do %>
-            <button type="button" class="btn btn-sm btn-warning"><span style="font-size:18px;"><%= @video.likes.count %></span><i class="ml-1 fas fa-star fa-lg"></i></button>
-          <% end %>
-        </div>
-      <% else %>
-        <div class="mt-2">
-          <span>Gostou da aula? Dê uma </span>
-          <%= link_to video_likes_path(@video), method: :post do %>
-            <button type="button" class="btn btn-sm btn-warning"><i class="ml-1 far fa-star fa-lg"></i><p style="display: inline"> (<%= @video.likes.count %>)</p></button>
-          <% end %>
-        </div>
-      <% end %>
-      <hr>
-      <i><h4 class="mt-2">Sobre essa aula</h4></i>
-      <p class="ml-3"><%= @video.description %></p>
-    </div>
-  </div>
-
-    
-<% end %>
-
-
 
 
 
 
   <% if false %>
     <div class="navbar-left shadow-lg p-3 mb-5 bg-white rounded">
-      <p class="font-weight-bold">NÍVEIS</p>
-      <ul class="list-group list-group-flush">
-        <% @levels.each do |level| %>
-          <li class="list-group-item"><%= link_to level.title, category_path(level) %></li>
-        <% end %>
-      </ul>
+      
       <p class="font-weight-bold mt-5">Tópicos</p>
       <ul class="list-group list-group-flush">
         <% @categories.each do |cat| %>

@@ -30,7 +30,8 @@
               <% end %>
             </div>
             <div class="mb-3">
-              <a href="#" class="teste2 text-decoration-none text-reset">
+              <%= link_to categories_path, class: "text-decoration-none text-reset flex-column align-items-start" do %>
+              
                 <div class="d-flex justify-content-start ">
                   <i class="fa fa-graduation-cap" aria-hidden="true"></i>
                   <p class="mb-1 ml-2 font-weight-bold">Tópicos</p>
@@ -38,7 +39,8 @@
                 <small class="mb-1 text-secondary">
                   Comece seus estudos de acordo com suas necessidades.
                 </small>
-              </a>
+              <% end %>
+              
             </div>
             <a href="#" class="text-decoration-none text-reset flex-column align-items-start">
               <div class="d-flex justify-content-start ">

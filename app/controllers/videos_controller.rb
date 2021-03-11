@@ -9,7 +9,7 @@ class VideosController < ApplicationController
   
   def show
     @categories = categories
-    @levels = levels
+  
   end
 
   

@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   helper_method :is_teacher?
   helper_method :is_teacher_profile?
   before_action :categories_navbar
-  helper_method :levels
 
   
   def categories_navbar
@@ -12,10 +11,6 @@ class ApplicationController < ActionController::Base
 
   def categories
     @categories = Category.all
-  end
-
-  def levels
-    @levels = Category.find([12,13,14])
   end
 
   protected
