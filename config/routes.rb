@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   end
   resources :videos do
     resources :comments, module: :videos
-    resources :likes
+    resources :likes, only: [:create, :destroy]
+    resources :bookmarks, only: [:create, :destroy]
   end
   root to: 'pages#home'
   get 'search', to: 'pages#search'

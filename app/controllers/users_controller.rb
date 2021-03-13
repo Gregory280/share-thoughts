@@ -2,9 +2,14 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @user.name.sub!(/(.+\b.).+\z/, '\1.')
-    @likes = count_videos_likes(@user)
-    @comments = count_videos_comments(@user)
-    @videos = @user.videos.page params[:page]
+    if @user.teacher == TRUE
+      @likes = count_videos_likes(@user)
+      @comments = count_videos_comments(@user)
+      @videos = @user.videos.page params[:page]
+    end
+    @bookmarks = Array.new
+    @user.bookmarks.each { |bookmark| @bookmarks << Video.find(bookmark.video_id) }
+    
   end
 
   def index

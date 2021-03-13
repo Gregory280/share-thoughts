@@ -7,6 +7,7 @@ class User < ApplicationRecord
   #mudar pra 6 ou mais depois
   paginates_per 3
 
+  has_many :bookmarks, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :videos
   has_many :comments
