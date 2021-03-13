@@ -42,7 +42,8 @@
               <% end %>
               
             </div>
-            <a href="#" class="text-decoration-none text-reset flex-column align-items-start">
+            <%= link_to exams_path, class: 'text-decoration-none text-reset flex-column align-items-start' do %>
+            
               <div class="d-flex justify-content-start ">
                 <i class="fa fa-file-text" aria-hidden="true"></i>
                 <p class="mb-1 ml-2 font-weight-bold">Exames</p>
@@ -50,6 +51,7 @@
               <small class="mb-1 text-secondary">
                 Veja dicas, como estudar e conteúdos relacionados as principais provas de proficiência.
               </small>
+            <% end %>
             </a>
           </div> 
         </div>
@@ -88,10 +90,10 @@
         </li>
       <% else %>
         <%= link_to new_user_registration_path, class: 'mr-2' do %>
-          <button class="btn btn-info">Criar Conta</button>
+          <button class="btn btn-outline-primary">Criar Conta</button>
         <% end %>
         <%= link_to new_user_session_path do %>
-          <button class="btn btn-info">Entrar</button>
+          <button class="btn btn-outline-primary">Entrar</button>
         <% end %>
       <% end %>
     </ul>

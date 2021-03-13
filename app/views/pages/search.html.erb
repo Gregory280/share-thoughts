@@ -1,8 +1,19 @@
-<h2>Resultados</h2>
-<% @results.each do |result| %>
-  <h3><%= result.title %></h3> <br/>
-  <%= result.description %>
-  <br/>
-  <br/>
-  <br/>
-<% end %>
+<div class="container" style="margin-top:35px;">
+  <h2>Resultados</h2>
+  <hr>
+  <% if @results.empty? %>
+    <p>Não foi encontrado vídeos deste conteúdo.</p>
+  <% else %>
+    <% @results.each do |result| %>
+      
+      <span class="h4"><%= link_to result.title, result %></span><span class="text-muted ml-3"><%= result.created_at.to_date %></span> <br>
+      <%= truncate(result.description, length: 280) %>
+      <br/>
+      <br/>
+    <% end %>
+  <% end %>
+  <div class="d-flex justify-content-center mt-4">
+    <%= paginate @results %>
+  </div>
+</div>
+

@@ -9,7 +9,14 @@ class PagesController < ApplicationController
   end
 
   def search
-    @results = Video.where("title LIKE ?", "%" + params[:q] + "%")
+    @results = Video.where("title LIKE ?", "%" + params[:q] + "%").page params[:page]
+  end
+
+  def exams
+    @toelf = Category.find(3)
+    @toelf.videos.last(3)
+    @ielts = Category.find(7)
+    @ielts.videos.last(3)
   end
 
   def teachers

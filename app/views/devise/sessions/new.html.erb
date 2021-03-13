@@ -1,37 +1,82 @@
-<div class="row align-items-center">
-  <div class="col-md-12">
-    <div class="card text-center">
-      <div class="card-header">
-        <h4>Welcome again!</h4>
+<div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Welcome again!</h5>
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <form class="form-signin">
+                <div class="form-label-group">
+                  <%= f.email_field :email, autofocus: true, autocomplete: "email",
+                    placeholder:'Seu email', class: 'form-control' %>
+                  <%= f.label :email %>
+                </div>
+
+                <div class="form-label-group">
+                  <%= f.password_field :password, autocomplete: "current-password",
+                    class: 'form-control', placeholder: 'Sua senha' %>
+                  <%= f.label :password %>
+                </div>
+
+                <div class="custom-control custom-checkbox mb-3">
+                  <% if devise_mapping.rememberable? %>
+                    <div class="field mt-2">
+                      <%= f.check_box :remember_me %>
+                      <%= f.label :remember_me %>
+                    </div>
+                  <% end %>
+                </div>
+                <%= f.submit "Entrar", class: 'btn btn-lg bg-gray btn-block  text-white text-uppercase' %>
+                
+                <hr class="my-4">
+                <%= render "devise/shared/links" %>
+              </form>
+            <% end %>
+          </div>
+        </div>
       </div>
-      <div class="card-body">
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-          <div class="field form-group mt-2 mb-10">
-            <h5><%= f.label :email %></h5>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email",
-              style: 'margin-top:-15px', class: 'form-control' %>
-          </div>
-
-          <div class="field form-group mt-10">
-            <h5><%= f.label :password %></h5>
-            <%= f.password_field :password, autocomplete: "current-password",
-              class: 'form-control', style: 'margin-top: -15px' %>
-          </div>
-          <% if devise_mapping.rememberable? %>
-            <div class="field mt-2">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
-            </div>
-          <% end %>
-
-          <div class="actions">
-            <%= f.submit "Entrar", class: 'btn btn-success' %>
-          </div>
-        <% end %>
-      </div>
-      <%= render "devise/shared/links" %>
     </div>
   </div>
-  
+
+
+<% if false %>
+<div class="container">
+  <div class="row align-items-center">
+    <div class="col-md-12">
+      <div class="card text-center">
+        <div class="card-header">
+          <h4>Welcome again!</h4>
+        </div>
+        <div class="card-body">
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+            <div class="field form-group mt-2 mb-10">
+              <h5><%= f.label :email %></h5>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email",
+                style: 'margin-top:-15px', class: 'form-control' %>
+            </div>
+
+            <div class="field form-group mt-10">
+              <h5><%= f.label :password %></h5>
+              <%= f.password_field :password, autocomplete: "current-password",
+                class: 'form-control', style: 'margin-top: -15px' %>
+            </div>
+            <% if devise_mapping.rememberable? %>
+              <div class="field mt-2">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            <% end %>
+
+            <div class="actions">
+              <%= f.submit "Entrar", class: 'btn btn-success' %>
+            </div>
+          <% end %>
+        </div>
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+    
+  </div>
 </div>
+<% end %>

@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     @user.name.sub!(/(.+\b.).+\z/, '\1.')
     @likes = count_videos_likes(@user)
     @comments = count_videos_comments(@user)
+    @videos = @user.videos.page params[:page]
   end
 
   def index

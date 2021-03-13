@@ -3,6 +3,7 @@ class CommentsController < ApplicationController
   before_action :set_comment
 
   def show
+    
   end
 
   def edit

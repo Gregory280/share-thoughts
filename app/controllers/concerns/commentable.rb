@@ -2,15 +2,18 @@ module Commentable
   extend ActiveSupport::Concern
   include ActionView::RecordIdentifier
   include RecordHelper
-
+  include Devise::Controllers::Helpers
   included do
     before_action :authenticate_user!
+ 
   end
 
   def create
+    
     @comment = @commentable.comments.new(comment_params)
     @comment.user = current_user
     @comment.parent_id = @parent&.id
+
     
     respond_to do |format|
       if @comment.save

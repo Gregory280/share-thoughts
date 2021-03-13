@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'search', to: 'pages#search'
   devise_for :users
   resources :users, only: [:show, :edit]
-  get 'about', to: 'pages#about'
+  get 'exams', to: 'pages#exams'
   get 'teachers', to: 'pages#teachers'
   
 

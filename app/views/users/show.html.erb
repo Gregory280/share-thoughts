@@ -1,8 +1,8 @@
-
+<div class="container-fluid" style="margin-top:30px">
 <div class="row">
     <div class="col-md-10 mx-auto">
         <div class="bg-white shadow rounded ">
-          <div class="px-4 pt-0 pb-4 py-4 cover">
+          <div class="px-4 bg-gray pt-0 pb-4 py-4 cover">
             <div class="media align-items-end">
                 <div class="mr-3 mb-1">
                   <%= gravatar_for @user, size: 130, class: 'mb-2' %>
@@ -15,20 +15,13 @@
                     <% end %>
                 </div>
                 <div class="d-flex flex-row">
+                
                   <% if user_signed_in? && @user.email == current_user.email %>
-                    <% if @user.teacher === true  %>
-                      <div class="dropdown mr-3">
-                        <button class="btn btn-secondary" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Adicionar <i class="fa fa-plus" aria-hidden="true"></i>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                          <%= link_to 'Videoaula', new_video_path, class: "dropdown-item" %>
-                          <%= link_to 'Post', '#', class: "dropdown-item" %>
-                        </div>
-                        
-                      </div>
+                    <% if is_teacher_profile? %>
+                      <%= link_to 'Adicionar Videoaula <i class="fa fa-plus" style="color:black" aria-hidden="true"></i>'.html_safe, new_video_path, class: "btn bg-white mr-3" %>
+                    
                     <% end %>
-                    <%= link_to '<i class="fa fa-cog" aria-hidden="true"></i>'.html_safe, edit_user_registration_path, class: "btn btn-info" %>
+                    <%= link_to '<i class="fa fa-cog" style="color:black" aria-hidden="true"></i>'.html_safe, edit_user_registration_path, class: "btn bg-white" %>
                   <% end %>
                 </div>
             </div>
@@ -37,13 +30,10 @@
             <div class="bg-light p-4 d-flex justify-content-center text-center">
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item ml-2">
-                        <h5 class="font-weight-bold mb-0 d-block"><%= @user.videos.count %></h5><small class="font-weight-bold text-muted"> Videos</small>
+                        <h5 class="font-weight-bold mb-0 d-block"><%= @user.videos.count %></h5><span class="h5 font-weight-bold text-muted"> Videos</span>
                     </li>
                     <li class="list-inline-item ml-2">
-                        <h5 class="font-weight-bold mb-0 d-block">745</h5><small class="font-weight-bold text-muted"></i>Posts</small>
-                    </li>  
-                    <li class="list-inline-item ml-2">
-                        <h5 class="font-weight-bold mb-0 d-block"><%= @likes %></h5><small class="font-weight-bold text-muted"><i class="fa fa-star" style="color:#ede01f"></i></small>
+                        <h5 class="font-weight-bold mb-0 d-block"><%= @likes %></h5><span class="h5 font-weight-bold text-muted"><i class="fa fa-star" style="color:#ede01f"></i></s>
                     </li>                   
                 </ul>
             </div>
@@ -55,41 +45,58 @@
                     <p class="font-italic mb-0"><i>Sem informações...</i></p>
                   <% else %>
                     <p class="font-italic mb-0"><%= @user.about %></p>
-                  <% end %>
-                  
+                  <% end %>   
               </div>
           </div>
           <% if is_teacher_profile?  %>
             <div class="py-4 px-4">
-              <div class="d-flex align-items-center justify-content-between mb-3">
+              <div class="mb-3">
                   <h5 class="mb-0">Vídeoaulas</h5>
               </div>
-              <div class="row">
-                <div class="list-group px-4 py-3 container">
-                  <% @user.videos.each do |video| %>
-                    <div class='list-group-item list-group-item'>
-                      <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1"><%= link_to video.title, video %></h5>
-                        <div>
-                          <small><%= video.created_at.to_date %></small>
-                          <% if user_signed_in? && @user.email == current_user.email %>
-                            <%= link_to 'Editar', edit_video_path(video), class: 'd-inline ml-4' %>
-                            <%= link_to video, method: :delete, data: { confirm: 'Tem certeza?' } do %>
-                              <i class="ml-3 fa fa-trash-o" aria-hidden="true"></i>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-12 mx-auto">
+                    <div class="px-4 py-3">
+                      <% @videos.each do |video| %>
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1"><%= link_to video.title, video %></h5>
+                          <div>
+                            <small class="text-muted"><%= video.created_at.to_date %></small>
+                            <% if user_signed_in? && @user.email == current_user.email %>
+                              <%= link_to 'Editar', edit_video_path(video), class: 'd-inline ml-4' %>
+                              <%= link_to video, method: :delete, data: { confirm: 'Tem certeza?' } do %>
+                                <i class="ml-3 fa fa-trash-o" aria-hidden="true"></i>
+                              <% end %>
                             <% end %>
-                          <% end %>
+                          </div>
                         </div>
-                      </div>
+                        <hr>
+                      <% end %>
+                        <div class="d-flex justify-content-center mt-4">
+                          <%= paginate @videos %>
+                        </div>
                     </div>
-                  <% end %>
-                </div>                      
+                  </div>                      
+                </div>
               </div>
-              <div class="d-flex align-items-center justify-content-between mb-3">
-                  <h5 class="mb-0">Postagens</h5>
+            </div>
+          <% end %>
+          <% if user_signed_in? && @user.email == current_user.email && !is_teacher_profile? %>
+            <div class="py-4 px-4">
+              <div class="mb-3">
+                  <h5 class="mb-0">Meus Bookmarks</h5>
+              </div>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-12 mx-auto">
+
+                  </div>
+                </div>
               </div>
             </div>
           <% end %>
         </div>
     </div>
+</div>
 </div>
 

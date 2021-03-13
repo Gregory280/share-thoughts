@@ -12,6 +12,7 @@ class Comment < ApplicationRecord
 
   after_create_commit do
     broadcast_append_to [commentable, :comments], target: "#{dom_id(parent || commentable)}_comments", partial: "comments/comment_with_replies"
+    
   end
 
   after_update_commit do

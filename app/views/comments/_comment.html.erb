@@ -8,16 +8,19 @@
       </span>
       <small style="opacity: 0.5"><%= comment.created_at.to_date %></small>
     </div>
-    <% if false%>
     
-      <% if current_user == comment.user %>
+    <% if false %>
+      
       <div class="d-flex">
-        <%= link_to "Edit", edit_comment_path(comment), class: "mr-2" %>
         <%= link_to "Delete", comment_path(comment), method: :delete, data: { confirm: "Are you sure?" } %>
       </div>
-      <% end %>
-    
+
     <% end %>
+      
+    
+    
+    
+   
   </div>
 
   <%= comment.body %>

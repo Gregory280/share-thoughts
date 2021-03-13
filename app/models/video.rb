@@ -6,7 +6,7 @@ class Video < ApplicationRecord
   has_many :video_categories
   has_many :categories, through: :video_categories
 
-  paginates_per 3
+  paginates_per 10
 
   validates :title, 
     length: { in: 3..150, message: 'O título deve ser conciso.' },

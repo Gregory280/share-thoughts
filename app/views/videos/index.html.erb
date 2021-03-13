@@ -1,43 +1,38 @@
-  <div class="container d-flex justify-content-center mt-100 mb-100 ">
+  <div class="container-fluid" style="margin-top:35px;">
     <div class="row">
-        <div class="col-md-12 streach-listing">
-            <div class="card">
-                <div class="card-header">
-                  <h3 class="card-title">Últimas aulas postadas</h3>
-                </div>
-                <% @videos.each do |video| %>
-                  <div class="comment-widgets m-b-20">
-                      <div class="d-flex flex-row comment-row">
-                          <div class="p-2"><span class="round"><%= gravatar_for video.user, size: 70, class: 'rounded mb-2 img-thumbnail' %></span></div>
-                          <div class="comment-text w-100 ml-2">
-                              <h3><%= link_to video.title, video %></h3>
-                              <div class="comment-footer">
-                                <b><small style="font-weight: bold">
-                                  <%= video.user.name %>
-                                </small></b>
-                                <small class="date ml-3">
-                                  <%= video.created_at.to_date %>
-                                </small>
-                                  <% video.categories.each do |cat| %>
-                                    <span class="label label-info ml-2 font-weight-bold text-uppercase">
-                                      <%= cat.title %>
-                                    </span>
-                                  <% end %>
-                              </div>
-                              <p class="m-b-5 m-t-10 mt-2">
-                                <%= truncate(video.description, length: 300 ) %>
-                              </p>
-                          </div>
-                      </div>
-                  </div>                 
-                <% end %>
+      <div class="col-md-10 mx-auto">
+  
+        <h2>Últimas videoaulas</h2>
+        <hr>
+        <% @videos.each do |video| %>
+          <div class="d-flex">
+            <div class="mr-3">
+              <span class="round"><%= gravatar_for video.user, size: 60 %></span>
             </div>
+            <div>
+              <span class="h4"><%= link_to video.title, video %></span><span class="text-muted ml-3"><%= video.created_at.to_date %></span> <br>
+              <% video.categories.each do |cat| %>
+                <small class="text-black ml-2 font-weight-bold text-uppercase" style="opacity: 0.6">
+                  <%= cat.title %>
+                </small>
+              <% end %>
+              <br>
+              <%= truncate(video.description, length: 280) %>
+            </div>  
+          </div>
+          <br/>
+          <br/>
+        <% end %>
+
+        <div class="d-flex justify-content-center mt-4">
+          <%= paginate @videos %>
         </div>
+      </div>
     </div>
   </div>
-  <div class="d-flex justify-content-center mt-4">
-    <%= paginate @videos %>
-  </div>
+  
+  
+ 
 
 
 
