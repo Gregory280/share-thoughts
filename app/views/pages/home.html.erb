@@ -1,12 +1,194 @@
-<div class="container">
-  <div class="jumbotron jumbotron-fluid">
-    <div class="container">
-      <h1 class="display-4">Fluid jumbotron</h1>
-      <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+<main>
+  <section>
+    <div class="container text-center">
+      <h2>
+        Sobre Go Teachers
+      </h2>
+      <p>
+        Criado pela necessidade e entusiasmo da língua inglesa, 
+        Go Teachers é um trabalho de conclusão de concurso ainda em desenvolvimento
+        que busca compartilhar gratuitamente videoaulas de professores voluntários
+        e fluêntes da língua inglesa. 
+      </p>
+      <div class="row d-flex justify-content-center stats-row">
+        <div class="stats-col text-center col-md-3 col-sm-6">
+          <div class="circle">
+            <span class="stats-no"><%= @total_teachers.count %></span> Professores participantes
+          </div>
+        </div>
+        <div class="stats-col text-center col-md-3 col-sm-6">
+          <div class="circle">
+            <span class="stats-no"><%= @total_users %></span></span> Total de usuários
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-  <%= link_to "Posts", posts_path %>
-  <i class="far fa-bell"></i>
+  </section>
+  <section class="welcome text-center">
+    <h2>REGISTRE-SE E COMECE SEUS ESTUDOS</h2>
+    <p>
+      Se registrando você poderá desfrutar de funcionalidades 
+      exclusivas da plataforma.
+    </p>
+    <%= image_tag('undraw_education', width: 320) %>
+  </section>
+  <section class="features">
+    <div class="container">
+      <h2 class="text-center">
+        VOCÊ PODERÁ
+      </h2>
+      <div class="row">
+        <div class="feature-col col-lg-4 col-xs-12">
+          <div class="card card-block text-center">
+            <div>
+              <div class="feature-icon">
+                <span class="fas fa-heart"></span>
+              </div>
+            </div>
 
-</div>
+            <div>
+              <h3>
+                Dar feedback
+              </h3>
+              <p>
+                Dê feedback curtindo ou comentando os vídeos. Fazendo isso estará
+                incentivando os professores.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="feature-col col-lg-4 col-xs-12">
+          <div class="card card-block text-center">
+            <div>
+              <div class="feature-icon">
+                <i class="fas fa-download"></i>
+              </div>
+            </div>
+
+            <div>
+              <h3>
+                Baixar videoaulas
+              </h3>
+              <p>
+                Baixe diretamente em seu disposito para pode continuar seus estudos
+                offline.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="feature-col col-lg-4 col-xs-12">
+          <div class="card card-block text-center">
+            <div>
+              <div class="feature-icon">
+                <i class="fas fa-bookmark"></i>
+              </div>
+            </div>
+
+            <div>
+              <h3>
+                Favoritar
+              </h3>
+              <p>
+                Tenha em seu perfil um acesso a videoaulas que você
+                tenha achado importante.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="bg-gray">
+    <div class="container">
+      <h2 class="text-center text-white" style="margin-bottom:40px;">
+        Navegue por nível
+      </h2>
+      <div class="row">
+        <div class="feature-col col-lg-4 col-xs-12">
+          <div class="card card-block text-center">
+            <div>
+              <div class="feature-icon bg-white">
+                <span class="text-black1">1</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-white">
+                <%= link_to 'Iniciante', @levels.first, class: 'text-reset' %>
+              </h3>
+              <h4 class="text-white">
+                <%= @levels.first.videos.count %> videoaulas disponíveis
+              </h4>
+            </div>
+          </div>
+        </div>
+        <div class="feature-col col-lg-4 col-xs-12">
+          <div class="card card-block text-center">
+            <div>
+              <div class="feature-icon bg-white">
+                <span class="text-black1">2</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-white">
+                <%= link_to 'Intermediário', @levels.second, class: 'text-reset' %>
+              </h3>
+              <h4 class="text-white">
+                <%= @levels.second.videos.count %> videoaulas disponíveis
+              </h4>
+            </div>
+          </div>
+        </div>
+        <div class="feature-col col-lg-4 col-xs-12">
+          <div class="card card-block text-center">
+            <div>
+              <div class="feature-icon bg-white">
+                <span class="text-black1">3</span>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-white">
+                <%= link_to 'Avançado', @levels.last, class: 'text-reset' %>
+              </h3>
+              <h4 class="text-white">
+                <%= @levels.last.videos.count %> videoaulas disponíveis
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="features">
+    <div class="container">
+      <h2 class="text-center">
+        Videoaulas recentes
+      </h2>
+      <% @videos.each do |video| %>
+        <div class="d-flex align-items-center">
+          <%= link_to video do %>
+          <div class="mr-3">
+            <span class="round"><%= gravatar_for video.user, size: 50 %></span>
+          </div>
+          <div>
+            <span class="h4"><%= link_to video.title, video, class: 'text-decoration-none text-reset' %></span><span class="text-muted ml-3"><%= video.created_at.to_date %></span> <br>
+            <% video.categories.each do |cat| %>
+              <small class="text-black ml-2 font-weight-bold text-uppercase" style="opacity: 0.6">
+                <%= cat.title %>
+              </small>
+            <% end %>
+            <br>
+          </div> 
+          <% end %> 
+        </div>
+        <br/>
+      <% end %>
+      <%= link_to videos_path do %>
+        <h4 class="text-center">
+          Veja lista completa
+        </h4>
+      <% end %>
+    </div>
+  </section>
+
+</main>
 

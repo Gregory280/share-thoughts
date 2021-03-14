@@ -130,7 +130,8 @@ h4 {
   font-size: 18px;
 }
 .bg-profiles {
-  background: #ececec;
+  background: rgba(17,24,39,1);
+  margin-top:30px!important;
 }
 
 /* custom icons*/
@@ -305,10 +306,13 @@ h4 {
     }
 
   .bg-video-author {
-    background: #f1f1f1b2;
+    background: #f1f1f1d5;
+  }
+  .teacher-about {
+    color:rgb(80, 80, 80);
   }
   .bg-comment {
-    background: #afafaf62;
+    background: #afafaf;
   }
   .hr-comment {
     margin-top: -1px;
@@ -368,4 +372,142 @@ h4 {
 .height-actions {
   height: 100%!important;
   width:30%!important;
+}
+
+/* css da home page */
+.stats-row {
+  margin-top: 55px;
+}
+
+.stats-col .circle {
+  display: inline-block;
+  width: 160px;
+  height: 160px;
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  color: #666;
+  border: 6px solid rgb(4, 45, 134);
+  border-radius: 50%;
+  padding: 55px 25px 0 25px;
+  position: relative;
+}
+
+.stats-col .circle .stats-no {
+  color: #fff;
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  top: -25px;
+  right: -15px;
+  font-family: "Raleway", Helvetica, Arial, sans-serif;
+  font-size: 18px;
+  background-color: rgba(17,24,39,1);
+  position: absolute;
+  border-radius: 50%;
+  font-weight: 700;
+}
+
+section {
+  padding: 65px 0;
+}
+.welcome {
+  color: #fff;
+  height: 450px;
+  overflow: hidden;
+  padding-top: 60px;
+  background: url(asset-path('home-bg.png')) center top no-repeat;
+}
+
+.welcome h2 {
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.welcome p {
+  color: #fff;
+  margin-bottom: 45px;
+}
+
+.features {
+  padding-bottom: 45px;
+}
+
+
+.features h2 {
+  color:  rgba(17,24,39,1);
+  margin-bottom: 40px;
+}
+
+.feature-col {
+  display: table;
+  padding-bottom: 45px;
+}
+
+.feature-col > div > div {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.feature-col > div > div:last-child {
+  padding-left: 20px;
+}
+
+.feature-col .feature-icon {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 15px;
+  background:  rgba(17,24,39,1);
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  line-height: 70px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.feature-col h3 {
+  color:  rgba(17,24,39,1);
+  
+}
+
+.feature-col p {
+  
+  font-size: 14px;
+  color: #999;
+}
+.card {
+  position: relative;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  overflow: hidden;
+  background:none;
+}
+.text-black1 {
+  color:rgb(0, 0, 0)!important;
+}
+.nivel-text {
+  font-size: 1.6rem!important;
+}
+
+
+@media (max-width: 61.9em) {
+  section,
+  .cta,
+  .block {
+    padding: 35px 0;
+  }
+  .features {
+    padding-bottom: 5px;
+  }
+  .stats-col {
+    margin-bottom: 25px;
+  }
+  .block {
+    height: auto;
+  }
+  .feature-col {
+    padding-bottom: 30px;
+  }
 }

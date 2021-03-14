@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :bookmarks, only: [:create, :destroy]
   end
   root to: 'pages#home'
+  get 'my_bookmarks', to: 'pages#my_bookmarks'
   get 'search', to: 'pages#search'
   devise_for :users
   resources :users, only: [:show, :edit]

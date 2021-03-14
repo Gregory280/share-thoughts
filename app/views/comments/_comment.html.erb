@@ -3,10 +3,13 @@
 <div class="">
   <div class="d-flex justify-content-between mb-1">
     <div>
+      
       <span class="badge rounded-pill bg-dark text-white px-2 py-2">
         <i class="fas fa-user"></i> <span class="ml-1"><%= comment.user.username %></span>
       </span>
+      
       <small style="opacity: 0.5"><%= comment.created_at.to_date %></small>
+      
     </div>
     
     <% if false %>

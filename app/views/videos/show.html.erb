@@ -66,11 +66,13 @@
                 <% end %>
               </a>
             </li>
-            <li class="list-group-item">
-              <%= link_to rails_blob_path(@video.video_file, disposition: 'attachment'), class: 'text-reset inline-flex items-center border border-gray-300' do %>
-                <i class="fas fa-download"></i>
-              <% end %>
-            </li>
+            <% if user_signed_in? %>
+              <li class="list-group-item">
+                <%= link_to rails_blob_path(@video.video_file, disposition: 'attachment'), class: 'text-reset inline-flex items-center border border-gray-300' do %>
+                  <i class="fas fa-download"></i>
+                <% end %>
+              </li>
+            <% end %>
             <li class="list-group-item">
               <a class="-ml-px inline-flex items-center ">
                 Share
@@ -94,7 +96,7 @@
               <div class="mr-3">
                 <%= gravatar_for @video.user, size: 50 %>
               </div>
-              <p class="text-gray">
+              <p class="teacher-about">
                 <%= truncate(@video.user.about, length: 220)  %>
               </p>
             </div>
@@ -124,20 +126,7 @@
         <% end %>
       </div>
     </div>
-
-    
-
   </main>
-
-
-
-
-
-
-
-  
-
-
 </div>
 
 

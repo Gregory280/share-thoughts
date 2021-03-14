@@ -9,7 +9,8 @@ class CategoriesController < ApplicationController
   
   def show
     @category = Category.find(params[:id])
-    @category_videos = @category.videos
+    @category_videos = @category.videos.page params[:page]
+
   end
 
   

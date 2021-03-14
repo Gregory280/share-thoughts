@@ -7,9 +7,8 @@
     <% @results.each do |result| %>
       
       <span class="h4"><%= link_to result.title, result %></span><span class="text-muted ml-3"><%= result.created_at.to_date %></span> <br>
-      <%= truncate(result.description, length: 280) %>
-      <br/>
-      <br/>
+      <p class="mt-2"><%= truncate(result.description, length: 280) %></p>
+      <hr>
     <% end %>
   <% end %>
   <div class="d-flex justify-content-center mt-4">
