@@ -6,7 +6,7 @@ class Video < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :video_categories
   has_many :categories, through: :video_categories
-
+  is_impressionable
   paginates_per 8
 
   validates :title, 

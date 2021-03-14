@@ -9,7 +9,7 @@ gem "google-cloud-storage", "~> 1.11", require: false
 gem 'activestorage-validator', '~> 0.1.2'
 gem 'font_awesome5_rails'
 gem 'kaminari', '~> 1.2', '>=1.2.1'
-
+gem 'impressionist'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.1.0'
 # Use sqlite3 as the database for Active Record

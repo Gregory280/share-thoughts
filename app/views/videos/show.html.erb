@@ -25,7 +25,7 @@
               <div class="mt-2">
                 <% @video.categories.each do |cat| %>
                   
-                    <span class=" inline-flex mr-2 items-center px-2  text-black ml-2 font-weight-bold text-uppercase" style="opacity: 0.6"><%= cat.title %></span>
+                    <span class="badge badge-pill badge-secondary inline-flex mr-2 items-center px-2   text-black ml-2 font-weight-bold text-uppercase" style="opacity: 0.6"><%= cat.title %></span>
                   
                 <% end %>
                 
@@ -81,7 +81,7 @@
           </ul>
         </div>
       </div>
-     
+      <p class="text-muted mt-2" style="font-size: 1.1rem"><%= @video.impressionist_count %> visualizações</p>
       <div class="mx-auto px- flex flex-wrap ">
         <div class="bg-video-author rounded-md sm:rounded-lg mt-4">
           <div class="px-3 py-4">

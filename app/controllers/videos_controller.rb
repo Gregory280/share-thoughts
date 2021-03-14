@@ -9,7 +9,7 @@ class VideosController < ApplicationController
   
   def show
     @categories = categories
-  
+    impressionist(@video)
   end
 
   

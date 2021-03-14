@@ -33,7 +33,7 @@
                         <h5 class="font-weight-bold mb-0 d-block"><%= @user.videos.count %></h5><span class="h5 font-weight-bold text-muted"> Videos</span>
                     </li>
                     <li class="list-inline-item ml-2">
-                        <h5 class="font-weight-bold mb-0 d-block"><%= @likes %></h5><span class="h5 font-weight-bold text-muted"><i class="fa fa-star" style="color:#ede01f"></i></s>
+                        <h5 class="font-weight-bold mb-0 d-block"><%= @likes %></h5><span class="h5 font-weight-bold text-muted"><i class="fas fa-heart" style="color:#e32222"></i></s>
                     </li>                   
                 </ul>
             </div>
@@ -51,7 +51,7 @@
           <% if is_teacher_profile?  %>
             <div class="py-4 px-4">
               <div class="mb-3">
-                  <h5 class="mb-0">Vídeoaulas</h5>
+                  <h5 class="mb-0">Vídeoaulas (<%= @user.videos.count %>)</h5>
               </div>
               <div class="container-fluid">
                 <div class="row">
@@ -85,7 +85,7 @@
           <% if user_signed_in? && @user.email == current_user.email %>
             <div class="py-4 px-4">
               <div class="mb-3">
-                  <h5 class="mb-0">Meus Favoritos</h5>
+                  <h5 class="mb-0">Meus Favoritos (<%= @bookmarks.count %>)</h5>
               </div>
               <div class="container-fluid">
                 <div class="row">
