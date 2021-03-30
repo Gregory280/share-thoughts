@@ -13,11 +13,9 @@ class BookmarksController < ApplicationController
   end
 
   def destroy
-    if !(already_bookmarked?)
-      flash[:notice] = "Cannot unbookmark"
-    else
-      @bookmark.destroy
-    end
+    
+    @bookmark.destroy
+    
     redirect_to video_path(@video)
   end
 

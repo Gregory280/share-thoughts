@@ -5,7 +5,7 @@
         Sobre Go Teachers
       </h2>
       <p>
-        Criado pela necessidade e entusiasmo da língua inglesa, 
+        Criado pela necessidade e entusiasmo pela língua inglesa, 
         Go Teachers é um trabalho de conclusão de concurso ainda em desenvolvimento
         que busca compartilhar gratuitamente videoaulas de professores voluntários
         e fluêntes da língua inglesa. 
@@ -13,12 +13,12 @@
       <div class="row d-flex justify-content-center stats-row">
         <div class="stats-col text-center col-md-3 col-sm-6">
           <div class="circle">
-            <span class="stats-no"><%= @total_teachers.count %></span> Professores participantes
+            <span class="stats-no"><%= @total_teachers.count %></span> Professores voluntários
           </div>
         </div>
         <div class="stats-col text-center col-md-3 col-sm-6">
           <div class="circle">
-            <span class="stats-no"><%= @total_users %></span></span> Total de usuários
+            <span class="stats-no"><%= @total_users %></span></span> Total de alunos
           </div>
         </div>
       </div>
@@ -188,6 +188,9 @@
         </h4>
       <% end %>
     </div>
+  </section>
+  <section class="container">
+    <%= link_to 'CRIAR CONTA', new_user_registration_path, class: 'badge-pill btn bg-gray text-white btn-block btn-lg' %>
   </section>
 
 </main>

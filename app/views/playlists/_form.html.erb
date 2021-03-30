@@ -1,0 +1,48 @@
+<div class="container" style="margin-top:30px">
+  <%= form_with(model: playlist) do |form| %>
+    <% if playlist.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(playlist.errors.count, "error") %> prohibited this playlist from being saved:</h2>
+
+        <ul>
+          <% playlist.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="card">
+      <div class="card-header bg-gray text-white">
+        <h3>Criar Playlist</h3>
+      </div>
+      <div class="card-body">
+        <div class="form-row">
+          <div class="col">
+            <div class="field form-group">
+              <%= form.label :title, 'Título da playlist', autofocus: true %>
+              <%= form.text_field :title %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <div class="field form-group">
+              <%= form.label :videos, 'Selecione as videoaulas' %><br/>
+              <%= form.collection_check_boxes(:video_ids, Video.where(user_id: current_user),
+                :id, :title, {prompt: 'none'}, {multiple: true}) do |vid| %>
+                  <label class="checkbox-inline">
+                    <%= vid.check_box %>
+                    <%= vid.label %>
+                  </label>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="actions">
+          <%= form.submit %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

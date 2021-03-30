@@ -13,6 +13,8 @@
  *= require bootstrap
  *= require_tree .
  *= require_self
+ *= require social-share-button
+ 
 */
 $fa-font-path: '@fortawesome/fontawesome-free/webfonts';
 @import '@fortawesome/fontawesome-free/scss/fontawesome';

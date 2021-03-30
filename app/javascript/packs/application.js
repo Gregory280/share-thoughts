@@ -18,4 +18,7 @@ import "bootstrap"
 
 require("trix")
 require("@rails/actiontext")
+require('packs/social-share-button.js.erb')
 import "controllers"
+
+console.log('hello')

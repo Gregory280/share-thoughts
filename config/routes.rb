@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :playlists
   resources :posts
   resources :categories, except: [:new, :edit, :delete]
   get 'comments/create'
@@ -10,6 +11,9 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
     resources :bookmarks, only: [:create, :destroy]
   end
+
+    
+  
   root to: 'pages#home'
   get 'my_bookmarks', to: 'pages#my_bookmarks'
   get 'search', to: 'pages#search'

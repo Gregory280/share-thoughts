@@ -15,11 +15,10 @@
                     <% end %>
                 </div>
                 <div class="d-flex flex-row">
-                
                   <% if user_signed_in? && @user.email == current_user.email %>
                     <% if is_teacher_profile? %>
                       <%= link_to 'Adicionar Videoaula <i class="fa fa-plus" style="color:black" aria-hidden="true"></i>'.html_safe, new_video_path, class: "btn bg-white mr-3" %>
-                    
+                      <%= link_to 'Criar Playlist', new_playlist_path, class: "btn bg-white mr-3" %>
                     <% end %>
                     <%= link_to '<i class="fa fa-cog" style="color:black" aria-hidden="true"></i>'.html_safe, edit_user_registration_path, class: "btn bg-white" %>
                   <% end %>
@@ -31,6 +30,9 @@
                 <ul class="list-inline mb-0">
                     <li class="list-inline-item ml-2">
                         <h5 class="font-weight-bold mb-0 d-block"><%= @user.videos.count %></h5><span class="h5 font-weight-bold text-muted"> Videos</span>
+                    </li>
+                    <li class="list-inline-item ml-2">
+                      <h5 class="font-weight-bold mb-0 d-block"><%= @total_views %></h5><span class="h5 font-weight-bold text-muted">Total Views</span>
                     </li>
                     <li class="list-inline-item ml-2">
                         <h5 class="font-weight-bold mb-0 d-block"><%= @likes %></h5><span class="h5 font-weight-bold text-muted"><i class="fas fa-heart" style="color:#e32222"></i></s>
@@ -75,6 +77,33 @@
                         <div class="d-flex justify-content-center mt-3">
                           <%= paginate @videos %>
                         </div>
+                    </div>
+                  </div>                      
+                </div>
+              </div>
+            </div>
+            <div class="py-4 px-4">
+              <div class="mb-3">
+                  <h5 class="mb-0">Playlists</h5>
+              </div>
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-12 mx-auto">
+                    <div class="px-4 py-3">
+                      <% @user.playlists.each do |playlist| %>
+                        <div class="d-flex w-100 justify-content-between">
+                          <h5 class="mb-1"><%= link_to playlist.title, playlist %></h5>
+                          <div>
+                            <% if user_signed_in? && @user.email == current_user.email %>
+                              <%= link_to 'Editar', edit_playlist_path(playlist), class: 'd-inline ml-4' %>
+                              <%= link_to playlist, method: :delete, data: { confirm: 'Tem certeza?' } do %>
+                                <i class="ml-3 fa fa-trash-o" aria-hidden="true"></i>
+                              <% end %>
+                            <% end %>
+                          </div>
+                        </div>
+                        <hr>
+                      <% end %>
                     </div>
                   </div>                      
                 </div>

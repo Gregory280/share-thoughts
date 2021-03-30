@@ -1,0 +1,27 @@
+<div class="container-fluid" style="margin-top:35px;">
+    <div class="row">
+      <div class="col-md-10 mx-auto">
+  
+        <h2><%= @playlist.title %> (<%= @playlist.videos.count %>)</h2>
+        <hr>
+        <% @playlist.videos.each do |video| %>
+          <div class="d-flex">
+            <div>
+              <span class="h4"><%= link_to video.title, video %></span> <br>
+              <% video.categories.each do |cat| %>
+                <small class="text-black ml-2 font-weight-bold text-uppercase" style="opacity: 0.6">
+                  <%= cat.title %>
+                </small>
+              <% end %>
+              <br>
+              <%= truncate(video.description, length: 280) %>
+            </div>  
+          </div>
+          <br/>
+          <br/>
+        <% end %>
+
+        
+      </div>
+    </div>
+  </div>

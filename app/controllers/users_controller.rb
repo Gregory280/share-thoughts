@@ -4,7 +4,10 @@ class UsersController < ApplicationController
     @user.name.sub!(/(.+\b.).+\z/, '\1.')
     if @user.teacher == TRUE
       @likes = count_videos_likes(@user)
-      
+      @total_views = 0
+      @user.videos.each do |vid|
+        @total_views = @total_views + vid.impressionist_count
+      end
       @videos = @user.videos.page params[:page]
     end
     @bookmarks = Video.joins(:bookmarks).where(bookmarks:{user_id:@user.id}).page params[:page]
