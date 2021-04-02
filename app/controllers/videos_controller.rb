@@ -10,6 +10,7 @@ class VideosController < ApplicationController
   def show
     @categories = categories
     impressionist(@video)
+    @latest = Video.last(3)
   end
 
   

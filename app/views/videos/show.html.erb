@@ -3,6 +3,10 @@
     <h3 class="leading-6 text-white-sm navbar-margins">
       <%= link_to 'Todos Vídeos', videos_path , class:'header-text text-white text-decoration-none text-v-sm' %>
       <span class="mx-2 text-white text-v-sm">/</span>
+      <% unless @video.playlist.blank? %>
+        <p class="text-white text-v-sm d-inline"><%= truncate(@video.playlist.title, length: 50) %></p>
+        <span class="mx-2 text-white text-v-sm">/</span>
+      <% end %>
       <p class="text-white text-v-sm d-inline"><%= truncate(@video.title, length: 50) %></p>
     </h3>
   </div>
@@ -18,18 +22,13 @@
       <div class="d-flex justify-content-between">
         <div class="p-1 mt-3 flex-grow-1">
           <div class="flex-grow">
-              
               <p class="<%= @video.title.size >= 80 ? 'video-title-sm' : 'video-title-bg'  %> font-weight-bold tracking-tight">
                 <%= @video.title %>
               </p>
-              
               <div class="mt-2">
                 <% @video.categories.each do |cat| %>
-                  
                     <span class="badge badge-pill badge-secondary inline-flex mr-2 items-center px-2   text-black ml-2 font-weight-bold text-uppercase" style="opacity: 0.6"><%= cat.title %></span>
-                  
-                <% end %>
-                
+                <% end %>                
               </div>
             </div>
         </div>
@@ -119,6 +118,24 @@
         </small>
         <p class=" mt-2 text-justify"><%= @video.description %></p>
       </div>
+      
+      <% if @video.playlist.blank? %>
+        <div class="mt-3">
+          <span class="h5 font-weight-light" style="text-decoration:underline;">Últimos vídeos adicionados</span><br/>
+          <% @latest.each do |vid| %>
+          <%= link_to vid.title, vid, style: 'font-size: 22px' %><br/>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="mt-3">
+          <span class="h5 font-weight-light" style="text-decoration:underline;">Mais vídeos desta playlist</span><br/>
+          <% @video.playlist.videos.each_with_index do |vid, index| %>
+          <span class="badge badge-pill badge-primary mr-2 mt-3"><%= index+1 %></span><span class="mt-4"><%= link_to vid.title, vid %></span><br/>
+          <% end %>
+        </div>
+      <% end %>
+      
+      
       <hr>
       <div class="commentarios">
         <i><p class="text-muted">Dúvias? Sugestões? Elogios? Deixe um comentário!</p></i>

@@ -11,9 +11,6 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
     resources :bookmarks, only: [:create, :destroy]
   end
-
-    
-  
   root to: 'pages#home'
   get 'my_bookmarks', to: 'pages#my_bookmarks'
   get 'search', to: 'pages#search'
@@ -21,9 +18,4 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit]
   get 'exams', to: 'pages#exams'
   get 'teachers', to: 'pages#teachers'
-  
-
-  # get 'users/:id', to: 'users#show'
-  # get 'users', to: 'users#index'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
