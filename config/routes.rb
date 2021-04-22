@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   resources :playlists
   resources :posts
   resources :categories, except: [:new, :edit, :delete]
@@ -18,4 +19,5 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit]
   get 'exams', to: 'pages#exams'
   get 'teachers', to: 'pages#teachers'
+  
 end

@@ -417,7 +417,7 @@ section {
   height: 450px;
   overflow: hidden;
   padding-top: 60px;
-  background: url(asset-path('home-bg.png')) center top no-repeat;
+  background: url(asset-path('home-bg.png')) center top repeat-x;
 }
 
 .welcome h2 {

@@ -28,6 +28,7 @@ class VideosController < ApplicationController
     @video.user = current_user
     respond_to do |format|
       if @video.save
+        format.turbo_stream { redirect_to @video }
         format.html { redirect_to @video }
       else
         render :new
@@ -61,7 +62,7 @@ class VideosController < ApplicationController
 
     
     def video_params
-      params.require(:video).permit(:title, :description, :video_file, category_ids: [] )
+      params.require(:video).permit(:title, :description, :video_file, :material, category_ids: [])
     end
 
 end

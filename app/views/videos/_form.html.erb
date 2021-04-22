@@ -11,48 +11,143 @@
       </ul>
     </div>
   <% end %>
+  
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <div class="field form-group">
+            <%= form.label :title, 'Título' %><br/>
+            <%= form.text_field :title, class: 'form-control' %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="field form-group">
+            <%= form.label :description, 'Descrição' %><br/>
+            <%= form.text_area :description, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+              <%= form.label :category, 'Selecione os tópicos relacionados a videoaula' %><br/>
+              
+              <div id="accordion">
+              <p>
+                <a class="btn btn-outline-secondary mb-3" data-toggle="collapse" 
+                  href="#collapseExams" role="button" aria-expanded="false" aria-controls="collapseExams">
+                    Exames
+                </a>
+                <a class="btn btn-outline-secondary mb-3" data-toggle="collapse"
+                  href="#collapseHabilidades" role="button" aria-expanded="false" aria-controls="collapseHabilidades">
+                    Habilidades
+                </a>
+                <a class="btn btn-outline-secondary mb-3" data-toggle="collapse" 
+                  href="#collapseConteudo" role="button" aria-expanded="false" aria-controls="collapseConteudo">
+                    Conteúdo
+                </a>
+                <a class="btn btn-outline-secondary mb-3" data-toggle="collapse" 
+                  href="#collapseNiveis" role="button" aria-expanded="false" aria-controls="collapseNiveis">
+                    Níveis
+                </a>
+                <a class="btn btn-outline-secondary mb-3" data-toggle="collapse"
+                  href="#collapseOutros" role="button" aria-expanded="false" aria-controls="collapseOutros">
+                    Outros
+                </a>
+              </p>
+              <div class="row">
+                
+                  <div class="collapse multi-collapse" id="collapseExams" aria-labelledby="collapseExams" data-parent="#accordion">
+                    
+                    <div class="card card-body">
+                      <div class="form-group">
+                        <%= form.collection_check_boxes(:category_ids, Category.exams, :id, :title, { prompt: 'None'}, { multiple: true} ) do |cat| %>
+                          <label class="text-capitalize checkbox-inline">
+                            <%= cat.check_box %>
+                            <%= cat.label %>
+                          </label>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                
+                
+                  <div class="collapse multi-collapse" id="collapseHabilidades" aria-labelledby="collapseHabilidades" data-parent="#accordion">
+                    <div class="card card-body">
+                      <div class="form-group">
+                        <%= form.collection_check_boxes(:category_ids, Category.skills, :id, :title, { prompt: 'None'}, { multiple: true} ) do |cat| %>
+                          <label class="text-capitalize checkbox-inline text-bold">
+                            <%= cat.check_box %>
+                            <%= cat.label %>
+                          </label>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
 
-  <div class="card-body">
-    <div class="row">
-      <div class="col">
-        <div class="field form-group">
-          <%= form.label :title, 'Título' %><br/>
-          <%= form.text_field :title, class: 'form-control' %>
+                  <div class="collapse multi-collapse" id="collapseConteudo" aria-labelledby="collapseConteudo" data-parent="#accordion">
+                    <div class="card card-body">
+                      <div class="form-group">
+                        <%= form.collection_check_boxes(:category_ids, Category.language, :id, :title, { prompt: 'None'}, { multiple: true} ) do |cat| %>
+                          <label class="text-capitalize checkbox-inline">
+                            <%= cat.check_box %>
+                            <%= cat.label %>
+                          </label>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="collapse multi-collapse" id="collapseNiveis" aria-labelledby="collapseNiveis" data-parent="#accordion">
+                    <div class="card card-body">
+                      <div class="form-group">
+                        <%= form.collection_check_boxes(:category_ids, Category.level, :id, :title, { prompt: 'None'}, { multiple: true} ) do |cat| %>
+                          <label class="text-capitalize checkbox-inline">
+                            <%= cat.check_box %>
+                            <%= cat.label %>
+                          </label>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="collapse multi-collapse" id="collapseOutros" aria-labelledby="collapseOutros" data-parent="#accordion">
+                    <div class="card card-body">
+                      <div class="form-group">
+                        <%= form.collection_check_boxes(:category_ids, Category.other, :id, :title, { prompt: 'None'}, { multiple: true} ) do |cat| %>
+                          <label class="text-capitalize checkbox-inline">
+                            <%= cat.check_box %>
+                            <%= cat.label %>
+                          </label>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="field form-group">
-          <%= form.label :description, 'Descrição' %><br/>
-          <%= form.text_area :description, class: "form-control" %>
+      <div class="row">
+        <div class="col">
+          <div class="field form-group">
+            <%= form.label :video_file, 'Enviar videoaula' %><i>(Somente arquivo com extensão .mp4)</i>
+            <%= form.file_field :video_file, class: 'form-control-file'  %>
+          </div>
+          <div class="field form-group">
+            <%= form.label :material, 'Material' %><i>(Material de apoio opcional)</i>
+            <%= form.file_field :material, class: 'form-control-file'  %>
+          </div>
+          
         </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <div class="form-group">
-            <%= form.label :category, 'Tópicos relacionados' %><br/>
-            <%= form.collection_check_boxes(:category_ids, Category.all, :id, :title, { prompt: 'None'}, { multiple: true} ) do |cat| %>
-              <label class="checkbox-inline">
-                <%= cat.check_box %>
-                <%= cat.label %>
-              </label>
-            <% end %>
-        </div>
+      <div class="actions">
+        <%= form.submit "Postar", class: 'btn btn-success px-3' %>
       </div>
     </div>
-    <div class="row">
-      <div class="col">
-        <div class="field form-group"><i>(Somente arquivo com extensão .mp4)</i>
-          <%= form.file_field :video_file, class: 'form-control-file'  %>
-        </div>
-      </div>
-    </div>
-    <div class="actions">
-      <%= form.submit "Postar", class: 'btn btn-success px-3' %>
-    </div>
-  </div>
+  
   
 
 <% end %>

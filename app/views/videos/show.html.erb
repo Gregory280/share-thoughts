@@ -3,7 +3,7 @@
     <h3 class="leading-6 text-white-sm navbar-margins">
       <%= link_to 'Todos Vídeos', videos_path , class:'header-text text-white text-decoration-none text-v-sm' %>
       <span class="mx-2 text-white text-v-sm">/</span>
-      <% unless @video.playlist.blank? %>
+      <% unless @video.playlist_id.blank? %>
         <p class="text-white text-v-sm d-inline"><%= truncate(@video.playlist.title, length: 50) %></p>
         <span class="mx-2 text-white text-v-sm">/</span>
       <% end %>
@@ -116,10 +116,20 @@
         <small class="text-sm mt-4 text-gray">
           | Publicado em <%= @video.created_at.to_date %>
         </small>
+        
         <p class=" mt-2 text-justify"><%= @video.description %></p>
+
+        <% if @video.material.blank? %>
+          
+          <br/><p>Essa videoaula não possui material de apoio...</p>
+        <% else %>
+          <b><p>Material de Apoio: <%= link_to 'Baixar', rails_blob_path(@video.material, disposition: "attachment") %> </p></b>
+                    
+        <% end %>
       </div>
+      <hr>
       
-      <% if @video.playlist.blank? %>
+      <% if @video.playlist_id.blank? %>
         <div class="mt-3">
           <span class="h5 font-weight-light" style="text-decoration:underline;">Últimos vídeos adicionados</span><br/>
           <% @latest.each do |vid| %>
