@@ -4,24 +4,34 @@
         <div class="bg-white shadow rounded ">
           <div class="px-4 bg-gray pt-0 pb-4 py-4 cover">
             <div class="media align-items-end">
-                <div class="mr-3 mb-1">
+                <div class="mr-3 mb-1 user-photo">
                   <%= gravatar_for @user, size: 130, class: 'mb-2' %>
                 </div>
                 <div class="media-body mb-5 justify-content-center text-white">
-                    <h2 class="mt-1 mb-0"><%= @user.name %></h2>
-                    <p class="remove-p-m"> Nome de Usuário: <i class="mr-2"><%= @user.username %></i></p>
+                    <h2 class="mt-1 mb-0 nome-cover"><%= @user.name %></h2>
+                    <p class="remove-p-m username-cover"> Nome de Usuário: <i class="mr-2"><%= @user.username %></i></p>
                     <% if is_teacher?  %>
-                      <b><span class="badge badge-light">Volunteer Teacher</span></b>
+                      <b><span class="badge badge-light badge-teacher">Volunteer Teacher</span></b>
                     <% end %>
                 </div>
                 <div class="d-flex flex-row">
+                  <% unless is_teacher_profile? %>
+                    <%= link_to "#", class: 'btn bg-white mr-3 btn-cover', style: 'color:black' do %>
+                      Seguindo <span class="badge badge-primary"><%= @user.following.count %></span>
+                    <% end %>
+                  <% end %>
+                  <% unless @user.email == current_user.email %>
+                    <%= link_to 'Seguir', user_relationships_path(@user), method: :post, class: 'btn btn-danger btn-cover' unless @rel.present? %>
+                    <%= link_to 'Deixar de seguir', relationship_path(@rel.id), method: :delete, class: 'btn btn-danger btn-cover' if @rel.present? %>
+                  <% end %>
                   <% if user_signed_in? && @user.email == current_user.email %>
                     <% if is_teacher_profile? %>
-                      <%= link_to 'Adicionar Videoaula <i class="fa fa-plus" style="color:black" aria-hidden="true"></i>'.html_safe, new_video_path, class: "btn bg-white mr-3" %>
-                      <%= link_to 'Criar Playlist', new_playlist_path, class: "btn bg-white mr-3" %>
+                      <%= link_to 'Adicionar Videoaula <i class="fa fa-plus" style="color:black" aria-hidden="true"></i>'.html_safe, new_video_path, class: "btn bg-white mr-3 btn-cover" %>
+                      <%= link_to 'Criar Playlist', new_playlist_path, class: "btn bg-white mr-3 btn-cover" %>
                     <% end %>
-                    <%= link_to '<i class="fa fa-cog" style="color:black" aria-hidden="true"></i>'.html_safe, edit_user_registration_path, class: "btn bg-white" %>
+                    <%= link_to '<i class="fa fa-cog" style="color:black" aria-hidden="true"></i>'.html_safe, edit_user_registration_path, class: "btn bg-white btn-cover" %>
                   <% end %>
+                  
                 </div>
             </div>
           </div>
@@ -36,7 +46,10 @@
                     </li>
                     <li class="list-inline-item ml-2">
                         <h5 class="font-weight-bold mb-0 d-block"><%= @likes %></h5><span class="h5 font-weight-bold text-muted"><i class="fas fa-heart" style="color:#e32222"></i></s>
-                    </li>                   
+                    </li> 
+                    <li class="list-inline-item ml-2">
+                        <h5 class="font-weight-bold mb-0 d-block"><%= @user.followers.count %></h5><span class="h5 font-weight-bold text-muted">Seguidores</span>
+                    </li>                  
                 </ul>
             </div>
           <% end %>

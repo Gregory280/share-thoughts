@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       @videos = @user.videos.page params[:page]
     end
     @bookmarks = Video.joins(:bookmarks).where(bookmarks:{user_id:@user.id}).page params[:page]
-    
+    @rel = @user.followers.find_by(follower: current_user)
   end
 
   def index

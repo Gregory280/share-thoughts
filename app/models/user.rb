@@ -5,6 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   #mudar pra 6 ou mais depois
+  has_many :followers, foreign_key: "followed_id", class_name:"Relationship"
+  has_many :following, foreign_key: "follower_id", class_name:"Relationship"
+  
   paginates_per 6
   has_many :playlists
   has_many :bookmarks, dependent: :destroy

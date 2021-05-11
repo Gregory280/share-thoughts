@@ -513,3 +513,22 @@ section {
     padding-bottom: 30px;
   }
 }
+
+@media (max-width: 950px) {
+  .user-photo {
+    display: none;
+  }
+  .nome-cover{
+    
+    font-size: 1.6rem;
+  }
+  .username-cover {
+    font-size: .9rem;
+  }
+  .badge-teacher {
+    font-size: .8rem
+  }
+  .btn-cover {
+    font-size: .8rem;
+  }
+}

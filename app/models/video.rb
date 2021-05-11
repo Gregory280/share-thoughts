@@ -11,10 +11,12 @@ class Video < ApplicationRecord
 
   is_impressionable
   
-  paginates_per 8
+  paginates_per 10
   
   extend FriendlyId
   friendly_id :title, use: [:slugged, :history, :finders]
+
+  scope :feed_for, -> (user) { where(user_id: user.following.select(:followed_id)).order(created_at: :desc)}
 
   validates :title, 
     length: { in: 4..130, message: 'O título deve ser conciso.' },

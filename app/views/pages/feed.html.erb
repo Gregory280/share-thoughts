@@ -1,0 +1,49 @@
+
+<div class="container-fluid" style="margin-top:35px;">
+    <div class="row">
+      <div class="col-md-10 mx-auto">
+  
+        <h2>Últimas videoaulas de seus professores favoritos </h2>
+        <hr>
+        <% if @feed.blank? %>
+          <h4>Comece conhecendo as videoaulas disponíveis e siga seus professores favoritos para ver suas últimas aulas. </h4>
+          <h4><%= link_to 'Vejas as últimas videoaulas', videos_path %></h4>
+        <% else %>
+          <div class="d-flex">
+            <span class="badge">Seguindo</span>
+            <% @following.each do |teacher| %>
+              <%= link_to teacher.name, teacher, class: 'badge badge-secondary mr-2' %>
+            <% end %>
+          </div>
+          <hr>
+         
+          <% @feed.each do |video| %>
+            <div class="d-flex">
+              <div class="mr-3">
+                <span class="round"><%= gravatar_for video.user, size: 60 %></span>
+              </div>
+              <div>
+                
+                <span class="h4"><%= link_to video.title, video %></span><span class="text-muted ml-3"><%= video.created_at.to_date %></span> <br>
+                <% video.categories.each do |cat| %>
+                  <small class="text-black ml-2 font-weight-bold text-uppercase" style="opacity: 0.6">
+                    <%= cat.title %>
+                  </small>
+                <% end %>
+                <br>
+                <%= truncate(video.description, length: 280) %>
+              </div>  
+            </div>
+            <br/>
+            <br/>
+          <% end %>
+        <% end %>
+        
+
+        <div class="d-flex justify-content-center mt-4">
+          <%= paginate @feed %>
+        </div>
+      </div>
+    </div>
+  </div>
+  

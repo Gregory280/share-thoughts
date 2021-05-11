@@ -1,7 +1,10 @@
 class PagesController < ApplicationController
+  before_action :authenticate_user!, only: [:feed, :my_bookmarks]
+
+  
   def home
-    if current_user
-      @user = current_user
+    if user_signed_in?
+      redirect_to feed_path
     end
     @total_teachers = User.where(teacher: TRUE)
     @total_users = User.count
@@ -10,6 +13,13 @@ class PagesController < ApplicationController
   end
 
   def about
+  end
+
+  def feed
+    user = current_user
+    @feed = Video.feed_for(user).page params[:page]
+    
+    @following = User.where(id: user.following.collect { |obj| obj.followed_id })
   end
 
   def my_bookmarks

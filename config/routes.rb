@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  
+  get 'feed', to: 'pages#feed'
   resources :playlists
-  resources :posts
   resources :categories, except: [:new, :edit, :delete]
   get 'comments/create'
   resources :comments do
@@ -16,7 +15,10 @@ Rails.application.routes.draw do
   get 'my_bookmarks', to: 'pages#my_bookmarks'
   get 'search', to: 'pages#search'
   devise_for :users
-  resources :users, only: [:show, :edit]
+  resources :users, only: [:show, :edit] do
+    resources :relationships, only: [:create]
+  end
+  resources :relationships, only: [:destroy]
   get 'exams', to: 'pages#exams'
   get 'teachers', to: 'pages#teachers'
   
